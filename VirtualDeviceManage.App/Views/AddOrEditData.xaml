@@ -1,0 +1,51 @@
+﻿<Window x:Class="VirtualDeviceManage.App.Views.AddOrEditData"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VirtualDeviceManage.App.Views"
+        mc:Ignorable="d"
+        FontSize="16"
+        DataContext="{Binding Source={StaticResource Locator},Path=VirtualDeviceList.SelectedItem}"
+        Title="AddOrEditData" Height="450" Width="600">
+    <StackPanel Margin="8" >
+        <TextBlock x:Name="AddOrEditTxt"
+                   
+                   Text="添加一个设备"
+                   FontSize="28"
+                   Margin="0 2"
+                    />
+        <Border BorderThickness="0.5" BorderBrush="Gray" Margin="0 3"/>
+        <UniformGrid Margin="0 5" Columns="3">
+            
+            <TextBlock Text="设备名称：" />
+            <TextBox  Text="{Binding Name}" 
+                     />
+        </UniformGrid>
+        
+        <UniformGrid  Margin="0 5" Columns="3">
+            <TextBlock Text="设备类型：" />
+            <TextBox Text="{Binding  DeviceType.Name }"/>
+        </UniformGrid>
+        
+        <UniformGrid  Margin="0 5" Columns="3">
+            <TextBlock Text="Ip 地  址：" />
+            <TextBox Text="{Binding  IpAddrees }"/>
+        </UniformGrid>      
+        <UniformGrid  Margin="0 5" Columns="3">
+            <TextBlock Text="端      口：" />
+            <TextBox Text="{Binding  Port }"/>
+        </UniformGrid>
+        <UniformGrid  Margin="0 5" Columns="3">
+            <TextBlock Text="通讯方式：" />
+            <TextBox Text="{Binding  CommProtocol }"/>
+        </UniformGrid>
+        <UniformGrid  Margin="0 5" Columns="2">
+            <Button Content="Save" Margin="5 0" Click="btnOk_Click" />
+            <Button Content="Cancel"
+                    Margin="5 0"
+                    Click="btnCancel_Click" />
+        </UniformGrid>
+        
+    </StackPanel>
+</Window>
