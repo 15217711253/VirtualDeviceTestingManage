@@ -72,8 +72,7 @@ namespace VirtualDeviceManage.App.CommProviders
                 ///开机码
                 case "$1powr 1":
                     var a = ((KeyValuePair<int, string>)base.FanError).Key;
-                    if (a == 1)
-                    { break; }
+           
                     
                     Power = true; //改变投影机状态
                     socketServer.Send(cus_msg.remoteEndPoint, "%1powr=ok");
