@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using VirtualDeviceManage.App.CommProviders;
 using VirtualDeviceManage.App.DeviceVirtualStaute;
+using VirtualDeviceManage.App.Interface;
 
 namespace VirtualDeviceManage.App.ProtocolProviders
 {
@@ -36,22 +37,24 @@ namespace VirtualDeviceManage.App.ProtocolProviders
 
             switch (cus_msg.msg)
             {
-                case "!A1ESS000#":      //动雕1开启
+                //动雕1开启
+                case "!A1ESS000#":     
                     base.Power = true;
                     socketServer.Send(cus_msg.remoteEndPoint, "!A1OK#");
                     break;
-                case "!A1ESO000#":      //动雕1关闭
+                //动雕1关闭
+                case "!A1ESO000#":     
                     base.Power = false;
                     socketServer.Send(cus_msg.remoteEndPoint, "!A1OK#");
-                    break; 
-                case "!A1RSN01#":        //动雕1 表演 段落  01    
-                    socketServer.Send(cus_msg.remoteEndPoint, "!A1OK#");
                     break;
-         
-
-
-
+                
                 default:
+                    //动雕1 表演 段落  01    !A1RSN01#
+                    if (cus_msg.msg.Contains("RSN"))
+                    {
+                        base.ShowId = int.Parse(cus_msg.msg.Substring(6,2));
+                        socketServer.Send(cus_msg.remoteEndPoint, "!A1OK#");
+                    }
                     break;
             }
 

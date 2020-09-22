@@ -310,15 +310,16 @@ namespace VirtualDeviceManage.App.ViewModel
                             var a = SelectedItems.FirstOrDefault(x => x.Source.Id == item.Source.Id);
                             if (a == null)
                             {
-                                SelectedItems.Add(new VrDeviceDbugViewModel(item.Source));
+ 
+                                
+                                var DebugViewModel = new VrDeviceDbugViewModel(item.Source);
+                                SelectedItems.Add(DebugViewModel);
+                                
                             }
                         }
                         string s = string.Empty;
                         foreach (var i in SelectedItems)
                         {
-                            var view = new DeviceStatuesView();
-                            view.DataContext = i.commProtocol ;
-                            view.Show();
                             s += $"{i.Source.Name}：{i.GetHashCode()}\r\n";
                         }
 

@@ -35,6 +35,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using VirtualDeviceManage.App.CommProviders;
+using VirtualDeviceManage.App.Interface;
 
 namespace VirtualDeviceManage.App
 {
@@ -43,6 +44,10 @@ namespace VirtualDeviceManage.App
         public static string[] Ipadds { get; set; } = new string[] { };
         public static string[] SubMarks { get; set; }
 
+        /// <summary>
+        /// 控制类
+        /// </summary>
+        /// <returns></returns>
         public static List<ICommProtocol> GetCommProtocols()
         {
             //var s = new Object().GetType().Assembly;
@@ -52,6 +57,22 @@ namespace VirtualDeviceManage.App
             var commProtocols = container.GetExportedValues<ICommProtocol>();
 
             return commProtocols.ToList();
+        }
+
+        
+        /// <summary>
+        /// 设备DeBug页面
+        /// </summary>
+        /// <returns></returns>
+        public static List<IDeviceStatusView> GetDeviceViews()
+        {
+            //var s = new Object().GetType().Assembly;
+
+            var catalog = new AssemblyCatalog(GetTypeMethod().Assembly);
+            var container = new CompositionContainer(catalog);
+            var DeviceStatusViews = container.GetExportedValues<IDeviceStatusView>();
+
+            return DeviceStatusViews.ToList();
         }
 
         private static Type GetTypeMethod()

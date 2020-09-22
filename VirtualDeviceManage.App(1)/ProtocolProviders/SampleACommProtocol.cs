@@ -36,6 +36,7 @@ using System.Text;
 using System.Threading.Tasks;
 using VirtualDeviceManage.App.CommProviders;
 using VirtualDeviceManage.App.DeviceVirtualStaute;
+using VirtualDeviceManage.App.Interface;
 
 namespace VirtualDeviceManage.App.ProtocolProviders
 {

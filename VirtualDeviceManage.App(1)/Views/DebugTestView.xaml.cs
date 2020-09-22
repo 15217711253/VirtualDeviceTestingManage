@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace VirtualDeviceManage.App.Views
 {
     /// <summary>
-    /// DeviceStatuesView.xaml 的交互逻辑
+    /// DebugTestView.xaml 的交互逻辑
     /// </summary>
-    public partial class DeviceStatuesView : Window
+    public partial class DebugTestView : UserControl
     {
-        public DeviceStatuesView()
+        public DebugTestView()
         {
             InitializeComponent();
         }

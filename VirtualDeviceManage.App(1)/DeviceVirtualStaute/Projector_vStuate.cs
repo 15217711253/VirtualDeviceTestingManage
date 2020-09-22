@@ -37,6 +37,15 @@ namespace VirtualDeviceManage.App.DeviceVirtualStaute
 {
     public class Projector_vStuate:GalaSoft.MvvmLight.ViewModelBase
     {
+
+        public Projector_vStuate()
+        {
+            ErrCode = new Dictionary<int, string>();
+            ErrCode.Add(0, "0：未检测到错误");
+            ErrCode.Add(1, "1：警告");
+            ErrCode.Add(2, "2：错误");
+
+        }
         /// <summary>
         /// 投影机开关
         /// </summary>
@@ -54,11 +63,35 @@ namespace VirtualDeviceManage.App.DeviceVirtualStaute
         }
 
 
+        private bool _IsOpen;
+
+        public bool IsOpen
+        {
+            get { return IsOpen; }
+            set
+            {
+                IsOpen = value;
+                this.RaisePropertyChanged("IsOpen");
+            }
+        }
+
+        private bool _isClose;
+
+        public bool IsClose
+        {
+            get { return _isClose; }
+            set
+            {
+                _isClose = value;
+                this.RaisePropertyChanged("IsClose");
+            }
+        }
+
 
         /// <summary>
         /// 灯泡时间
         /// </summary>
- 
+
         private int _LampTime = 6000;
 
         public int LampTime
@@ -71,6 +104,35 @@ namespace VirtualDeviceManage.App.DeviceVirtualStaute
             }
         }
 
+        private Dictionary<int,string> _errCode;
+
+        public Dictionary<int,string> ErrCode
+        {
+            get { return _errCode; }
+            set
+            {
+                _errCode = value;
+                this.RaisePropertyChanged("ErrCode");
+            }
+        }
+
+        private object _fanError;
+
+        public object FanError
+        {
+            get { return _fanError; }
+            set
+            {
+                _fanError = value;
+                this.RaisePropertyChanged("FanError");
+            }
+        }
+
+       
+ 
+
 
     }
+
+    
 }

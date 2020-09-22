@@ -39,21 +39,31 @@ using System.Reflection;
 using System.Reflection.Emit;
 using System.Threading;
 using System.Windows;
+using System.Windows.Controls;
 using VirtualDeviceManage.App.CommProviders;
 using VirtualDeviceManage.App.DeviceVirtualStaute;
+using VirtualDeviceManage.App.Interface;
+using VirtualDeviceManage.App.Views;
 using VirtualDeviceTestingManage.Domain;
 
 namespace VirtualDeviceManage.App.ViewModel
 {
     public class VrDeviceDbugViewModel : VrDeviceViewModelBase
     {
-        public VrDeviceDbugViewModel(VirtualNetworkDevice networkDevice)
+        public VrDeviceDbugViewModel(VirtualNetworkDevice networkDevice )
             : base(networkDevice)
         {
             InitialNetServer();
+        
         }
+        //public VrDeviceDbugViewModel(VirtualNetworkDevice networkDevice )
+        //   : base(networkDevice)
+        //{
+        //    InitialNetServer();
+        //}
 
         public ICommProtocol commProtocol { get; set; }
+ 
         public ObservableCollection<string> TestLogger 
         {
             get { return _TestLogger; }
@@ -84,6 +94,28 @@ namespace VirtualDeviceManage.App.ViewModel
                 }
                 var obj = Activator.CreateInstance(type,server);
                 commProtocol = obj as ICommProtocol;
+                
+
+
+                //Debug设备页面
+                var DeviceViews = GlobalData.GetDeviceViews();
+
+                var DeviceViewTypeName = DeviceViews.Where(x => x.Name == Source.CommProtocol).FirstOrDefault();
+
+                Type DeviceViewtype = Type.GetType(DeviceViewTypeName.ToString(), false);
+
+                if (type == null)
+                {
+                    Console.WriteLine("无法加载配置");
+                    return;
+                }
+                var viewobj = Activator.CreateInstance(DeviceViewtype,this);
+                var view = viewobj as Window;
+                
+                view.DataContext = commProtocol;
+                view.Show();
+
+
                 //Todo:有相同地址时会报错...
                 server.StartListen(RevMsg, base.Source.IpAddrees, base.Source.Port);
             }

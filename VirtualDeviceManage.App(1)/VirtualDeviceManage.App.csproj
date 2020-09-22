@@ -194,17 +194,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="DeviceVirtualStaute\IDevice_Stuate.cs" />
+    <Compile Include="Interface\IDevice_Stuate.cs" />
     <Compile Include="DeviceVirtualStaute\Projector_vStuate.cs" />
     <Compile Include="DeviceVirtualStaute\SampleB_vStuate.cs" />
     <Compile Include="DeviceVirtualStaute\Artech_vStuate.cs" />
     <Compile Include="ProtocolProviders\ArtechComProtocol.cs" />
-    <Compile Include="ProtocolProviders\ICommProtocol.cs" />
+    <Compile Include="Interface\ICommProtocol.cs" />
     <Compile Include="ProtocolProviders\PJLinkCommProtocol.cs" />
     <Compile Include="GlobalData.cs" />
     <Compile Include="ProtocolProviders\SampleBCommProtocol.cs" />
     <Compile Include="ProtocolProviders\SampleACommProtocol.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\DeviceStatueViewModel\PJLinkDeviceStatueViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="ViewModel\VirtualDevice\ProtocolCboxViewModel.cs" />
     <Compile Include="ViewModel\VirtualDevice\VrDeviceViewModelBase.cs" />
@@ -214,9 +215,14 @@
     <Compile Include="Views\AddOrEditData.xaml.cs">
       <DependentUpon>AddOrEditData.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\DeviceStatuesView.xaml.cs">
-      <DependentUpon>DeviceStatuesView.xaml</DependentUpon>
+    <Compile Include="Views\DeviceStatuesView\ArtechDeviceView.xaml.cs">
+      <DependentUpon>ArtechDeviceView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\DebugTestView.xaml.cs" />
+    <Compile Include="Views\DeviceStatuesView\PJLinkDeviceView.xaml.cs">
+      <DependentUpon>PJLinkDeviceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Interface\IDeviceStatusView.cs" />
     <Compile Include="Views\VirtualDeviceDebugView.xaml.cs">
       <DependentUpon>VirtualDeviceDebugView.xaml</DependentUpon>
     </Compile>
@@ -239,7 +245,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\DeviceStatuesView.xaml">
+    <Page Include="Views\DeviceStatuesView\ArtechDeviceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DebugTestView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\DeviceStatuesView\PJLinkDeviceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

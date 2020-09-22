@@ -4,14 +4,14 @@
 *CLR版本    ：4.0.30319.42000
 *机器名称   ：JSOUND
 *公司名称   : 
-*命名空间   ：VirtualDeviceManage.App.DeviceVirtualStaute
-*文件名称   ：IDevice_Stuate.cs
+*命名空间   ：VirtualDeviceManage.App.CommProviders
+*文件名称   ：PJLinkProtocol.cs
 *版本号     : 2020|V1.0.0.0 
 
 *=================================
 
 *创 建 者    ：kayga.mo
-*创建日期    ：2020/9/16 星期三 11:12:54 
+*创建日期    ：2020/9/14 星期一 11:21:21 
 *电子邮箱    ：mo.jj@topauthor.com
 *个人主站    ：http://www.topauthor-tech.com
 *功能描述    ：
@@ -19,7 +19,7 @@
 
 *=================================
 
-*修改日期    ：2020/9/16 星期三 11:12:54 
+*修改日期    ：2020/9/14 星期一 11:21:21 
 *修改者      ：kayga.mo
 *修改描述    ：
 *版本号      : 2020|V1.0.0.0 
@@ -27,19 +27,13 @@
 ***********************************************************************/
 
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using VirtualDeviceManage.App.DeviceVirtualStaute;
 
-namespace VirtualDeviceManage.App.DeviceVirtualStaute
+namespace VirtualDeviceManage.App.Interface
 {
-    public interface IDevice_Stuate
+    public interface ICommProtocol: IDevice_Stuate
     {
-        /// <summary>
-        /// 随机事件
-        /// </summary>
-        void doSomeWork();
+        string Name { get; }
+        void RevMsg(object obj);
     }
 }

@@ -1,0 +1,98 @@
+﻿<Window x:Class="VirtualDeviceManage.App.Views.PJLinkDeviceView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VirtualDeviceManage.App.Views"
+        mc:Ignorable="d"
+        Title="PJLinkDeviceView" Height="550" Width="300">
+    <Grid>
+        <StackPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left">
+            <TextBlock FontSize="32" Text="投影机" Margin="0 10"/>
+
+            <UniformGrid Columns="2" Margin="5">
+                <TextBlock Text="开关状态"/>
+                <UniformGrid Columns="2">
+                    <RadioButton Content="ON" GroupName="power" IsChecked="{Binding Power}"/>
+                    <RadioButton Content="Off"  GroupName="power" IsChecked="True" />
+                </UniformGrid>
+            </UniformGrid >
+            <UniformGrid Columns="2" Margin="5">
+                <TextBlock Text="灯光时间" />
+                <TextBox Text="{Binding LampTime  ,UpdateSourceTrigger=PropertyChanged}"  />
+            </UniformGrid>
+            <UniformGrid Columns="2" Margin="5">
+                <TextBlock Text="风扇错误" />
+                <StackPanel Orientation="Horizontal">
+                    <ComboBox   
+                        
+                        ItemsSource="{Binding ErrCode}"
+                              SelectedItem="{Binding FanError}"
+                              DisplayMemberPath="Value"
+                        SelectedIndex="0"
+                        
+                               />
+
+
+                </StackPanel>
+            </UniformGrid>
+            <UniformGrid Columns="2" Margin="5">
+                <TextBlock Text="灯泡错误" />
+                <StackPanel Orientation="Horizontal">
+                    <ComboBox  SelectedIndex="0" 
+                        ItemsSource="{Binding ErrCode}"
+                            SelectedItem="{Binding LightError}"    
+                              DisplayMemberPath="Value"
+                               />
+                </StackPanel>
+            </UniformGrid>
+            <UniformGrid Columns="2" Margin="5">
+                <TextBlock Text="温度错误" />
+                <StackPanel Orientation="Horizontal">
+                    <ComboBox  ItemsSource="{Binding ErrCode}"
+                              SelectedItem="{Binding TempError}"
+                              DisplayMemberPath="Value"
+                                SelectedIndex="0" 
+                               />
+                </StackPanel>
+            </UniformGrid>
+            <UniformGrid Columns="2" Margin="5">
+                <TextBlock Text="封面打开错误" />
+                <StackPanel Orientation="Horizontal">
+                    <ComboBox  ItemsSource="{Binding ErrCode}"
+                              SelectedItem="{Binding OpenCoverError}"
+                              DisplayMemberPath="Value"
+                                SelectedIndex="0" 
+                               />
+                </StackPanel>
+            </UniformGrid>
+            <UniformGrid Columns="2" Margin="5">
+                <TextBlock Text="过滤错误" />
+                <StackPanel Orientation="Horizontal">
+                    <ComboBox  ItemsSource="{Binding ErrCode}"
+                              SelectedItem="{Binding FilterError}"
+                              DisplayMemberPath="Value"
+                                SelectedIndex="0" 
+                               />
+                </StackPanel>
+            </UniformGrid>
+
+
+            <UniformGrid Columns="2" Margin="5">
+                <TextBlock Text="其他错误" />
+                <StackPanel Orientation="Horizontal">
+                    <ComboBox  ItemsSource="{Binding ErrCode}"
+                              SelectedItem="{Binding OtherError}"
+                              DisplayMemberPath="Value"
+                                SelectedIndex="0" 
+                               />
+                </StackPanel>
+            </UniformGrid>
+
+
+                <Button Content="随机状态"/>
+            <local:DebugTestView Width="270" x:Name="DeBugUserControl"  />
+        </StackPanel>
+        
+    </Grid>
+</Window>

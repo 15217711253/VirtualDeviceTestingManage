@@ -7,7 +7,8 @@
         xmlns:Views ="clr-namespace:VirtualDeviceManage.App.Views"
         DataContext="{Binding Source={StaticResource Locator},Path=Main}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="850" Width="1170" Loaded="Window_Loaded">
+        Title="MainWindow" Height="850" Width="1170" Loaded="Window_Loaded"
+        Closed="Window_Closed">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition MaxWidth="350"/>

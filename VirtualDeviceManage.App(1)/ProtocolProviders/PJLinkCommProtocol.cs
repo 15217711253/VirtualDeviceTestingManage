@@ -28,25 +28,30 @@
 
 
 using Common.SocketExtend;
+using GalaSoft.MvvmLight.Command;
 using SocketHeartEx.DotnetSocket;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using VirtualDeviceManage.App.DeviceVirtualStaute;
+using VirtualDeviceManage.App.Interface;
+using VirtualDeviceManage.App.ViewModel.DeviceStatueViewModel;
 
 namespace VirtualDeviceManage.App.CommProviders
 {
     [Export(typeof(ICommProtocol))]
-    public class PJLinkCommProtocol : Projector_vStuate,ICommProtocol
+    public class PJLinkCommProtocol : PJLinkDeviceStatueViewModel, ICommProtocol
     {
         private DotnetSocketServer socketServer { get; set; }
         public string Name { get; private set; } = "PJLink";
 
         public PJLinkCommProtocol(DotnetSocketServer server)
         {
+            
             socketServer = server;
         }
 
@@ -66,7 +71,9 @@ namespace VirtualDeviceManage.App.CommProviders
             {
                 ///开机码
                 case "$1powr 1":
-                    base.Power = true; //改变投影机状态
+                    var a = ((KeyValuePair<int, string>)base.FanError).Key;
+                    
+                    Power = true; //改变投影机状态
                     socketServer.Send(cus_msg.remoteEndPoint, "%1powr=ok");
                     break;           
                     
@@ -75,7 +82,14 @@ namespace VirtualDeviceManage.App.CommProviders
                     base.Power = false; //改变投影机状态
                     socketServer.Send(cus_msg.remoteEndPoint, "%1powr=ERR2");
                     break;
-                
+                 ///查询开关机状态
+                case "%1powr ?":       
+                    if(base.Power)
+                        socketServer.Send(cus_msg.remoteEndPoint, "%1powr=On");
+                    else
+                        socketServer.Send(cus_msg.remoteEndPoint, "%1powr=Off");
+                    break;
+
 
 
                 default:
@@ -89,5 +103,52 @@ namespace VirtualDeviceManage.App.CommProviders
             base.Power = !base.Power;
             Console.WriteLine("PJLink doSomeWork");
         }
+        private Thread ChangeLampTimeThread  ;
+        private RelayCommand<string> _ChangeLampTimeCommand;
+
+        /// <summary>
+        /// Gets the MyCommand.
+        /// </summary>
+        public RelayCommand<string> ChangeLampTimeCommand
+        {
+            get
+            {
+                return _ChangeLampTimeCommand
+                    ?? (_ChangeLampTimeCommand = new RelayCommand<string>(
+                    p =>
+                    {
+                        if (p == "Add")
+                        {
+                            if (ChangeLampTimeThread != null && ChangeLampTimeThread.IsAlive) ChangeLampTimeThread.Abort();
+                            ChangeLampTimeThread = new Thread(new ThreadStart(new Action(() =>
+                            {
+                                while (true)
+                                {
+                                    LampTime++;
+                                    System.Threading.Thread.Sleep(1000);
+                                }
+                            })));
+ 
+                            ChangeLampTimeThread.Start();
+                             
+                        }
+                        else
+                        {
+                            if (ChangeLampTimeThread != null && ChangeLampTimeThread.IsAlive) ChangeLampTimeThread.Abort();
+                            ChangeLampTimeThread = new Thread(new ThreadStart(new Action(() =>
+                            {
+                                while (true)
+                                {
+                                    LampTime--;
+                                    System.Threading.Thread.Sleep(1000);
+                                }
+                            })));
+                            
+                            ChangeLampTimeThread.Start();
+                        }
+                    }));
+            }
+        }
+
     }
 }

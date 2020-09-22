@@ -104,5 +104,23 @@ namespace VirtualDeviceTestingManage.Common
             }
         }
 
+        /// <summary>
+        /// 退出程序将IP设为DHCP
+        /// </summary>
+        public static void setNetWorkDHCP()
+        {
+            ManagementClass mc = new ManagementClass("Win32_NetworkAdapterConfiguration");
+            ManagementObjectCollection moc = mc.GetInstances();
+            foreach (ManagementObject mo in moc)
+            {
+                if (!(bool)mo["IPEnabled"]) continue;
+                mo.InvokeMethod("SetDNSServerSearchOrder", null);
+                mo.InvokeMethod("EnableStatic", null);
+                mo.InvokeMethod("SetGateways", null);
+                mo.InvokeMethod("EnableDHCP", null);
+                break;
+            }
+
+        }
     }
 }
