@@ -40,5 +40,34 @@ namespace VirtualDeviceManage.App.Views
 
         }
 
+ 
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var Select = (e.AddedItems[0] as ComboBoxItem).Content.ToString();
+            switch (Select.ToString())
+            {
+                case "A1":
+                    this.Statue_Mover_Grid.Visibility = Visibility.Visible;
+                    this.Statue_SERVO_Grid.Visibility = Visibility.Collapsed;
+                    break;
+                case "A2":
+                    this.Statue_Mover_Grid.Visibility = Visibility.Visible;
+                    this.Statue_SERVO_Grid.Visibility = Visibility.Collapsed;
+                    break;
+                case "A3":
+                    this.Statue_Mover_Grid.Visibility = Visibility.Collapsed;
+                    this.Statue_SERVO_Grid.Visibility = Visibility.Collapsed;
+                    break;
+                case "A4":
+                    this.Statue_SERVO_Grid.Visibility = Visibility.Visible;
+                    this.Statue_Mover_Grid.Visibility = Visibility.Collapsed;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+
     }
 }

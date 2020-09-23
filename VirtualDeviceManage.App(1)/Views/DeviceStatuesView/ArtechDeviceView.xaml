@@ -5,16 +5,114 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VirtualDeviceManage.App.Views"
         mc:Ignorable="d"
-        Title="ArtechDeviceView" Height="450" Width="800">
-    <StackPanel Orientation="Vertical">
-        <Label Content="{Binding Name}" Foreground="Black" FontSize="30"/>
-        <CheckBox Content="当前电源状态" IsChecked="{Binding Power,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-        <StackPanel Orientation="Horizontal">
-            <Label Content="当前表演节目" Foreground="Black" FontSize="30"/>
-            <TextBox Text="{Binding ShowId,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <Button Content="自加" Margin="6" Command="{Binding ChangeLampTimeCommand}" CommandParameter="Add" />
-            <Button Content="自减" Margin="6" Command="{Binding ChangeLampTimeCommand}" CommandParameter="Minus"/>
+        Title="ArtechDeviceView" Height="560" Width="300">
+    <Grid>
+        <StackPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left">
+            <TextBlock FontSize="32" Text="动雕" Margin="0 10"/>
+            <UniformGrid Columns="2" Margin="5">
+                <TextBlock Text="动雕ID" />
+                <StackPanel Orientation="Horizontal">
+                    <ComboBox   SelectedItem="{Binding DeviceId}"
+                               SelectionChanged="ComboBox_SelectionChanged" 
+                                
+                                >
+                        <ComboBoxItem Content="A1" />
+                        <ComboBoxItem Content="A2"/>
+                        <ComboBoxItem Content="A3"/>
+                        <ComboBoxItem Content="A4"/>
+                    </ComboBox>
+                </StackPanel>
+            </UniformGrid>
+            <UniformGrid Columns="2" Margin="5">
+                <TextBlock Text="开关状态"/>
+                <UniformGrid Columns="2">
+                    <RadioButton Content="ON" GroupName="power" IsChecked="{Binding Power}"/>
+                    <RadioButton Content="Off"  GroupName="power" IsChecked="True" />
+                </UniformGrid>
+            </UniformGrid >
+            <UniformGrid Columns="2" Margin="5">
+                <TextBlock Text="表演段落" />
+                <TextBox Text="{Binding ShowId ,UpdateSourceTrigger=PropertyChanged}"  />
+            </UniformGrid>
+            <UniformGrid Columns="2" Margin="5" x:Name="Statue_Mode_Grid">
+                <TextBlock Text="Mode" />
+                <StackPanel Orientation="Horizontal">
+                    <ComboBox     
+                              SelectedItem="{Binding Statue_Mode}"
+                        SelectedIndex="2"
+                          >
+                        <ComboBoxItem Content="O:Off"/>
+                        <ComboBoxItem Content="M:maintence"/>
+                        <ComboBoxItem Content="R:remote"/>
+                    </ComboBox>
+                </StackPanel>
+            </UniformGrid>
+            <UniformGrid Columns="2" Margin="5" x:Name="Statue_EStop_Grid">
+                <TextBlock Text="E-stop" />
+                <StackPanel Orientation="Horizontal">
+                    <ComboBox     
+                              SelectedItem="{Binding Statue_EStop}"
+                        SelectedIndex="1"
+                          >
+                        <ComboBoxItem Content="0:E-stopped"/>
+                        <ComboBoxItem Content="1:Normal"/>
+                    </ComboBox>
+                </StackPanel>
+            </UniformGrid>
+            <UniformGrid Columns="2" Margin="5" x:Name="Statue_Status_Grid">
+                <TextBlock Text="Status" />
+                <StackPanel Orientation="Horizontal">
+                    <ComboBox     
+                              SelectedItem="{Binding Statue_Status}"
+                        SelectedIndex="1"
+                          >
+                        <ComboBoxItem Content="F: Fault"/>
+                        <ComboBoxItem Content="R: Ready"/>
+                    </ComboBox>
+                </StackPanel>
+            </UniformGrid>
+            <UniformGrid Columns="2" Margin="5" x:Name="Statue_APU_Grid">
+                <TextBlock Text="APU" />
+                <StackPanel Orientation="Horizontal">
+                    <ComboBox     
+                              SelectedItem="{Binding Statue_APU}"
+                        SelectedIndex="1"
+                          >
+                        <ComboBoxItem Content="F: Fault"/>
+                        <ComboBoxItem Content="N:Normal"/>
+                    </ComboBox>
+                </StackPanel>
+            </UniformGrid>
+
+            <UniformGrid Columns="2" Margin="5" x:Name="Statue_SERVO_Grid">
+                <TextBlock Text="SERVO" />
+                <StackPanel Orientation="Horizontal">
+                    <ComboBox     
+                              SelectedItem="{Binding Statue_SERVO}"
+                        SelectedIndex="1"
+                          >
+                        <ComboBoxItem Content="F: Fault"/>
+                        <ComboBoxItem Content="N:Normal"/>
+                    </ComboBox>
+                </StackPanel>
+            </UniformGrid>
+            <StackPanel  Margin="5" x:Name="Statue_Mover_Grid">
+                <TextBlock Text="动雕状况（9位）" />
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox Content="1" IsChecked="{Binding MoverPower[0]}" />
+                    <CheckBox Content="2" IsChecked="{Binding MoverPower[1]}"/>
+                    <CheckBox Content="3" IsChecked="{Binding MoverPower[2]}"/>
+                    <CheckBox Content="4" IsChecked="{Binding MoverPower[3]}"/>
+                    <CheckBox Content="5" IsChecked="{Binding MoverPower[4]}"/>
+                    <CheckBox Content="6" IsChecked="{Binding MoverPower[5]}"/>
+                    <CheckBox Content="7" IsChecked="{Binding MoverPower[6]}"/>
+                    <CheckBox Content="8" IsChecked="{Binding MoverPower[7]}"/>
+                    <CheckBox Content="9" IsChecked="{Binding MoverPower[8]}"/>
+                </StackPanel>
+            </StackPanel>
+            <Button Content="随机状态"/>
+            <local:DebugTestView Width="270" x:Name="DeBugUserControl"  />
         </StackPanel>
-        <local:DebugTestView Width="350" x:Name="DeBugUserControl"/>
-    </StackPanel>
+
+    </Grid>
 </Window>

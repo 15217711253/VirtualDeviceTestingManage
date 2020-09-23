@@ -204,6 +204,7 @@
     <Compile Include="GlobalData.cs" />
     <Compile Include="ProtocolProviders\SampleBCommProtocol.cs" />
     <Compile Include="ProtocolProviders\SampleACommProtocol.cs" />
+    <Compile Include="ViewModel\DeviceStatueViewModel\ArtechDeviceStatueViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\DeviceStatueViewModel\PJLinkDeviceStatueViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
