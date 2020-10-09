@@ -36,5 +36,32 @@ namespace VirtualDeviceManage.App.Views
             DeBugUserControl.DataContext = vrDeviceDbugViewModel;
 
         }
+
+        private void RandomButton_Click(object sender, RoutedEventArgs e)
+        {
+            Random ran = new Random();
+            this.PowerRadioButton.IsChecked = (ran.Next() % 2 == 0);
+            this.LampTimeTextBox.Text = ran.Next(0, 10000).ToString();
+            this.FanErrorComboBox.SelectedIndex = ran.Next(0,this.FanErrorComboBox.Items.Count);
+            this.FilterErrorComboBox.SelectedIndex = ran.Next(0, this.FilterErrorComboBox.Items.Count);
+            this.LightErrorComboBox.SelectedIndex = ran.Next(0, this.LightErrorComboBox.Items.Count);
+            this.OpenCoverErrorComboBox.SelectedIndex = ran.Next(0, this.OpenCoverErrorComboBox.Items.Count);
+            this.OtherErrorComboBox.SelectedIndex = ran.Next(0, this.OtherErrorComboBox.Items.Count);
+            this.TempErrorComboBox.SelectedIndex = ran.Next(0, this.TempErrorComboBox.Items.Count);
+ 
+        }
+        
+        private void NorMalButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.PowerRadioButton.IsChecked = true;
+            this.LampTimeTextBox.Text = "6000";
+            this.FanErrorComboBox.SelectedIndex = 0;
+            this.FilterErrorComboBox.SelectedIndex = 0;
+            this.LightErrorComboBox.SelectedIndex = 0;
+            this.OpenCoverErrorComboBox.SelectedIndex = 0;
+            this.OtherErrorComboBox.SelectedIndex = 0;
+            this.TempErrorComboBox.SelectedIndex = 0;
+
+        }
     }
 }

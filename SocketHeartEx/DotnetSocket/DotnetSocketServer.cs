@@ -18,8 +18,11 @@ namespace SocketHeartEx.DotnetSocket
         /// </summary>
         public Action<object> RevMsg { get; set; }
 
+
         //存储已连接的客户端的泛型集合
-        private static Dictionary<string, Socket> socketList = new Dictionary<string, Socket>();
+        private  Dictionary<string, Socket> socketList = new Dictionary<string, Socket>();
+
+        private Socket socket;
 
         /// <summary>
         /// 接收连接
@@ -30,20 +33,29 @@ namespace SocketHeartEx.DotnetSocket
             string str;
             while (true)
             {
-                //等待接收客户端连接 Accept方法返回一个用于和该客户端通信的Socket
-                Socket recviceSocket = ((Socket)obj).Accept();
-                //获取客户端ip和端口号
-                str = recviceSocket.RemoteEndPoint.ToString();
-                socketList.Add(str, recviceSocket);
-                //控件调用invoke方法 解决"从不是创建控件的线程访问它"的异常
-                CustomMsg msg = new CustomMsg(0, recviceSocket.RemoteEndPoint.ToString(), "连接成功！");
-                SetMsg(msg);
+                try
+                {
 
-                //Accept()执行过后 当前线程会阻塞 只有在有客户端连接时才会继续执行
-                //创建新线程,监控接收新客户端的请求数据
-                Thread thread = new Thread(startRecive);
-                thread.IsBackground = true;
-                thread.Start(recviceSocket);
+                    //等待接收客户端连接 Accept方法返回一个用于和该客户端通信的Socket
+                    Socket recviceSocket = ((Socket)obj).Accept();
+                    //获取客户端ip和端口号
+                    str = recviceSocket.RemoteEndPoint.ToString();
+                    socketList.Add(str, recviceSocket);
+                    //控件调用invoke方法 解决"从不是创建控件的线程访问它"的异常
+                    CustomMsg msg = new CustomMsg(0, recviceSocket.RemoteEndPoint.ToString(), "连接成功！");
+                    SetMsg(msg);
+
+                    //Accept()执行过后 当前线程会阻塞 只有在有客户端连接时才会继续执行
+                    //创建新线程,监控接收新客户端的请求数据
+                    Thread thread = new Thread(startRecive);
+                    thread.IsBackground = true;
+                    thread.Start(recviceSocket);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                    return;
+                }
             }
         }
 
@@ -107,12 +119,7 @@ namespace SocketHeartEx.DotnetSocket
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.ToString());
-                    if (((Socket)obj).Connected == false)
-                    {
-                        str = ((Socket)obj).RemoteEndPoint.ToString();
-                        socketList.Remove(str);
-                        return;
-                    }
+  
                     continue;
                     
                 }
@@ -123,7 +130,7 @@ namespace SocketHeartEx.DotnetSocket
         {
             this.RevMsg = RevMsg;
             //实例化一个Socket对象，确定网络类型、Socket类型、协议类型
-            Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
             IPEndPoint IEP = new IPEndPoint(IPAddress.Parse("127.0.0.1"), port);
             //绑定ip和端口
@@ -187,7 +194,7 @@ namespace SocketHeartEx.DotnetSocket
         {
             this.RevMsg = RevMsg;
             //实例化一个Socket对象，确定网络类型、Socket类型、协议类型
-            Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
             IPEndPoint IEP = new IPEndPoint(IPAddress.Parse(serverIP), port);
             //绑定ip和端口
@@ -200,6 +207,7 @@ namespace SocketHeartEx.DotnetSocket
             Thread thread = new Thread(new ParameterizedThreadStart(StartServer));
             thread.IsBackground = true;
             thread.Start(socket);
+            
         }
 
 
@@ -231,7 +239,28 @@ namespace SocketHeartEx.DotnetSocket
 
         public void Stop()
         {
-            System.Environment.Exit(0);
+
+            List<Socket> tempsk = new List<Socket>();
+
+            if (socket.Connected == false)
+            {
+                foreach (var s in socketList)
+                {
+                    tempsk.Add(s.Value);
+               
+                }
+
+                foreach (var t in tempsk)
+                {
+                    t.Disconnect(true);
+                    t.Close();
+                }
+                socketList.Clear();
+
+
+            }
+
+            socket.Close();
         }
 
         private void SetMsg(object str)

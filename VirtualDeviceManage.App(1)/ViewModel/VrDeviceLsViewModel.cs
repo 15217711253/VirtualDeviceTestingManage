@@ -307,28 +307,35 @@ namespace VirtualDeviceManage.App.ViewModel
                         //                            ));
                         foreach (var item in list)
                         {
+
                             var a = SelectedItems.FirstOrDefault(x => x.Source.Id == item.Source.Id);
                             if (a == null)
                             {
- 
-                                
                                 var DebugViewModel = new VrDeviceDbugViewModel(item.Source);
-                                SelectedItems.Add(DebugViewModel);
-                                
+                                SelectedItems.Add(DebugViewModel);    
+                            }
+                            else
+                            {
+                                if (a.view == null)
+                                {
+                                    SelectedItems.Remove(a);
+                                    var DebugViewModel = new VrDeviceDbugViewModel(item.Source);
+                                    SelectedItems.Add(DebugViewModel);
+                                }
                             }
                         }
+                        //测试
                         string s = string.Empty;
                         foreach (var i in SelectedItems)
                         {
                             s += $"{i.Source.Name}：{i.GetHashCode()}\r\n";
                         }
-
-
                         MessageBox.Show(s);
                     }));
             }
         }
 
+ 
 
         private RelayCommand _DoSomeWrokCommand;
 

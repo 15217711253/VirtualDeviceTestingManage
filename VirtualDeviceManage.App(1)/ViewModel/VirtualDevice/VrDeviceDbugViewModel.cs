@@ -48,7 +48,7 @@ using VirtualDeviceTestingManage.Domain;
 
 namespace VirtualDeviceManage.App.ViewModel
 {
-    public class VrDeviceDbugViewModel : VrDeviceViewModelBase
+    public class VrDeviceDbugViewModel : VrDeviceViewModelBase,IDisposable
     {
         public VrDeviceDbugViewModel(VirtualNetworkDevice networkDevice )
             : base(networkDevice)
@@ -63,6 +63,7 @@ namespace VirtualDeviceManage.App.ViewModel
         //}
 
         public ICommProtocol commProtocol { get; set; }
+        public Window view { get; set; }
  
         public ObservableCollection<string> TestLogger 
         {
@@ -110,17 +111,23 @@ namespace VirtualDeviceManage.App.ViewModel
                     return;
                 }
                 var viewobj = Activator.CreateInstance(DeviceViewtype,this);
-                var view = viewobj as Window;
+                view = viewobj as Window;
                 
                 view.DataContext = commProtocol;
                 view.Show();
-
+                view.Closed += View_Closed;
 
                 //Todo:有相同地址时会报错...
                 server.StartListen(RevMsg, base.Source.IpAddrees, base.Source.Port);
             }
 
         }
+
+        private void View_Closed(object sender, EventArgs e)
+        {
+            Dispose();
+        }
+
         public void doSomeWork()
         {
             var i = commProtocol as IDevice_Stuate;
@@ -143,6 +150,15 @@ namespace VirtualDeviceManage.App.ViewModel
             /// 接收处理接口
             commProtocol.RevMsg(obj);
 
+        }
+
+        public void Dispose()
+        {
+
+            server.Stop();
+            server = null;
+            view = null;
+            
         }
     }
 }

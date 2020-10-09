@@ -13,18 +13,28 @@
             <UniformGrid Columns="2" Margin="5">
                 <TextBlock Text="开关状态"/>
                 <UniformGrid Columns="2">
-                    <RadioButton Content="ON" GroupName="power" IsChecked="{Binding Power}"/>
-                    <RadioButton Content="Off"  GroupName="power" IsChecked="True" />
+                    <RadioButton x:Name="PowerRadioButton" Content="ON"  GroupName="power" IsChecked="{Binding Power}"/>
+                    <RadioButton Content="Off"  GroupName="power"  >
+                        <RadioButton.Style>
+                            <Style TargetType="RadioButton">
+                                <Style.Triggers>
+                                    <DataTrigger  Binding="{Binding Power}"   Value="false">
+                                        <Setter Property="IsChecked" Value="True"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </RadioButton.Style>
+                    </RadioButton>
                 </UniformGrid>
             </UniformGrid >
             <UniformGrid Columns="2" Margin="5">
                 <TextBlock Text="灯光时间" />
-                <TextBox Text="{Binding LampTime  ,UpdateSourceTrigger=PropertyChanged}"  />
+                <TextBox x:Name="LampTimeTextBox" Text="{Binding LampTime  ,UpdateSourceTrigger=PropertyChanged}"  />
             </UniformGrid>
             <UniformGrid Columns="2" Margin="5">
                 <TextBlock Text="风扇错误" />
                 <StackPanel Orientation="Horizontal">
-                    <ComboBox   
+                    <ComboBox   x:Name="FanErrorComboBox"
                         
                         ItemsSource="{Binding ErrCode}"
                               SelectedItem="{Binding FanError}"
@@ -39,7 +49,8 @@
             <UniformGrid Columns="2" Margin="5">
                 <TextBlock Text="灯泡错误" />
                 <StackPanel Orientation="Horizontal">
-                    <ComboBox  SelectedIndex="0" 
+                    <ComboBox   x:Name="LightErrorComboBox"
+                        SelectedIndex="0" 
                         ItemsSource="{Binding ErrCode}"
                             SelectedItem="{Binding LightError}"    
                               DisplayMemberPath="Value"
@@ -49,7 +60,9 @@
             <UniformGrid Columns="2" Margin="5">
                 <TextBlock Text="温度错误" />
                 <StackPanel Orientation="Horizontal">
-                    <ComboBox  ItemsSource="{Binding ErrCode}"
+                    <ComboBox 
+                        x:Name="TempErrorComboBox"
+                        ItemsSource="{Binding ErrCode}"
                               SelectedItem="{Binding TempError}"
                               DisplayMemberPath="Value"
                                 SelectedIndex="0" 
@@ -59,7 +72,9 @@
             <UniformGrid Columns="2" Margin="5">
                 <TextBlock Text="封面打开错误" />
                 <StackPanel Orientation="Horizontal">
-                    <ComboBox  ItemsSource="{Binding ErrCode}"
+                    <ComboBox 
+                           x:Name="OpenCoverErrorComboBox"
+                        ItemsSource="{Binding ErrCode}"
                               SelectedItem="{Binding OpenCoverError}"
                               DisplayMemberPath="Value"
                                 SelectedIndex="0" 
@@ -69,7 +84,9 @@
             <UniformGrid Columns="2" Margin="5">
                 <TextBlock Text="过滤错误" />
                 <StackPanel Orientation="Horizontal">
-                    <ComboBox  ItemsSource="{Binding ErrCode}"
+                    <ComboBox  
+                           x:Name="FilterErrorComboBox"
+                        ItemsSource="{Binding ErrCode}"
                               SelectedItem="{Binding FilterError}"
                               DisplayMemberPath="Value"
                                 SelectedIndex="0" 
@@ -81,7 +98,9 @@
             <UniformGrid Columns="2" Margin="5">
                 <TextBlock Text="其他错误" />
                 <StackPanel Orientation="Horizontal">
-                    <ComboBox  ItemsSource="{Binding ErrCode}"
+                    <ComboBox 
+                           x:Name="OtherErrorComboBox"
+                        ItemsSource="{Binding ErrCode}"
                               SelectedItem="{Binding OtherError}"
                               DisplayMemberPath="Value"
                                 SelectedIndex="0" 
@@ -90,7 +109,8 @@
             </UniformGrid>
 
 
-                <Button Content="随机状态"/>
+            <Button Content="随机状态" Click="RandomButton_Click" Margin="10"/>
+                <Button Content="正常状态" Click="NorMalButton_Click" Margin="10"/>
             <local:DebugTestView Width="270" x:Name="DeBugUserControl"  />
         </StackPanel>
         

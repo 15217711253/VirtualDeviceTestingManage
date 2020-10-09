@@ -26,18 +26,29 @@
             <UniformGrid Columns="2" Margin="5">
                 <TextBlock Text="开关状态"/>
                 <UniformGrid Columns="2">
-                    <RadioButton Content="ON" GroupName="power" IsChecked="{Binding Power}"/>
-                    <RadioButton Content="Off"  GroupName="power" IsChecked="True" />
+                    <RadioButton x:Name="PowerRadioButton" Content="ON" GroupName="power" IsChecked="{Binding Power}"/>
+                    <RadioButton Content="Off"  GroupName="power" >
+                        <RadioButton.Style>
+                            <Style TargetType="RadioButton">
+                                <Style.Triggers>
+                                    <DataTrigger  Binding="{Binding Power}"   Value="false">
+                                        <Setter Property="IsChecked" Value="True"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </RadioButton.Style>
+                        
+                    </RadioButton>
                 </UniformGrid>
             </UniformGrid >
             <UniformGrid Columns="2" Margin="5">
                 <TextBlock Text="表演段落" />
-                <TextBox Text="{Binding ShowId ,UpdateSourceTrigger=PropertyChanged}"  />
+                <TextBox x:Name="ShowIdTextBox" Text="{Binding ShowId ,UpdateSourceTrigger=PropertyChanged}"  />
             </UniformGrid>
             <UniformGrid Columns="2" Margin="5" x:Name="Statue_Mode_Grid">
                 <TextBlock Text="Mode" />
                 <StackPanel Orientation="Horizontal">
-                    <ComboBox     
+                    <ComboBox  x:Name="ModeComboBox"   
                               SelectedItem="{Binding Statue_Mode}"
                         SelectedIndex="2"
                           >
@@ -50,7 +61,7 @@
             <UniformGrid Columns="2" Margin="5" x:Name="Statue_EStop_Grid">
                 <TextBlock Text="E-stop" />
                 <StackPanel Orientation="Horizontal">
-                    <ComboBox     
+                    <ComboBox x:Name="EStopComboBox"   
                               SelectedItem="{Binding Statue_EStop}"
                         SelectedIndex="1"
                           >
@@ -62,7 +73,7 @@
             <UniformGrid Columns="2" Margin="5" x:Name="Statue_Status_Grid">
                 <TextBlock Text="Status" />
                 <StackPanel Orientation="Horizontal">
-                    <ComboBox     
+                    <ComboBox    x:Name="StatusComboBox"   
                               SelectedItem="{Binding Statue_Status}"
                         SelectedIndex="1"
                           >
@@ -74,7 +85,7 @@
             <UniformGrid Columns="2" Margin="5" x:Name="Statue_APU_Grid">
                 <TextBlock Text="APU" />
                 <StackPanel Orientation="Horizontal">
-                    <ComboBox     
+                    <ComboBox    x:Name="APUComboBox"    
                               SelectedItem="{Binding Statue_APU}"
                         SelectedIndex="1"
                           >
@@ -87,7 +98,7 @@
             <UniformGrid Columns="2" Margin="5" x:Name="Statue_SERVO_Grid">
                 <TextBlock Text="SERVO" />
                 <StackPanel Orientation="Horizontal">
-                    <ComboBox     
+                    <ComboBox      x:Name="SERVOComboBox" 
                               SelectedItem="{Binding Statue_SERVO}"
                         SelectedIndex="1"
                           >

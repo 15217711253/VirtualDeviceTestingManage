@@ -67,6 +67,11 @@ namespace VirtualDeviceManage.App.ViewModel
             
             //NetWorkProvider.UpdateNetWorkIpAddress(new string[3], new string[3], new string[3]);
         }
+
+        public override string ToString()
+        {
+            return base.ToString();
+        }
         /*---------------------------------- Public Methods ------------------------------------*/
 
         /*---------------------------------- Private Method ------------------------------------*/

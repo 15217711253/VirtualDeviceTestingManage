@@ -137,9 +137,10 @@ namespace VirtualDeviceManage.App.ViewModel.DeviceStatueViewModel
             }
         }
 
-
-
-
+        //public override string ToString()
+        //{
+        //    return $"{}";
+        //}
     }
 }
 

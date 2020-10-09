@@ -70,33 +70,53 @@ namespace VirtualDeviceManage.App.CommProviders
             switch (cus_msg.msg)
             {
                 ///开机码
-                case "$1powr 1":
-                    var a = ((KeyValuePair<int, string>)base.FanError).Key;
-           
+                case "%1powr 1":
+                    
                     
                     Power = true; //改变投影机状态
                     socketServer.Send(cus_msg.remoteEndPoint, "%1powr=ok");
                     break;           
                     
                  ///关机码
-                case "$1powr 0":
+                case "%1powr 0":
                     base.Power = false; //改变投影机状态
-                    socketServer.Send(cus_msg.remoteEndPoint, "%1powr=ERR2");
+                    socketServer.Send(cus_msg.remoteEndPoint, "%1powr=ok");
                     break;
                  ///查询开关机状态
                 case "%1powr ?":       
                     if(base.Power)
-                        socketServer.Send(cus_msg.remoteEndPoint, "%1powr=On");
+                        socketServer.Send(cus_msg.remoteEndPoint, "%1powr=1");
                     else
-                        socketServer.Send(cus_msg.remoteEndPoint, "%1powr=Off");
+                        socketServer.Send(cus_msg.remoteEndPoint, "%1powr=0");
+                    break;
+                case "%1Lamp ?":
+                    if (base.Power)
+                        socketServer.Send(cus_msg.remoteEndPoint, "%1Lamp="+base.LampTime+"1");
+                    else
+                        socketServer.Send(cus_msg.remoteEndPoint, "%1Lamp=" + base.LampTime + "0");
+                    break;
+                case " %1ERST ?":
+                    socketServer.Send(cus_msg.remoteEndPoint, GetStatue());
                     break;
 
-
-
-                default:
+                default :
                     break;
             }
 
+        }
+
+        private string GetStatue()
+        {
+            string statue =
+                "%1ERST="
+                + ((KeyValuePair<int, string>)base.FanError).Key.ToString()
+                + ((KeyValuePair<int, string>)base.LightError).Key.ToString()
+                + ((KeyValuePair<int, string>)base.TempError).Key.ToString()
+                + ((KeyValuePair<int, string>)base.OpenCoverError).Key.ToString()
+                + ((KeyValuePair<int, string>)base.FilterError).Key.ToString()
+                + ((KeyValuePair<int, string>)base.OtherError).Key.ToString();
+
+            return statue;
         }
 
         public void doSomeWork()

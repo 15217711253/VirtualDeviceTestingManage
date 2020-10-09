@@ -28,7 +28,7 @@
             <ComboBox DataContext="{Binding Source={StaticResource Locator},Path=ProtocolCbox}"
                         ItemsSource="{Binding CommProtocols}"
                       SelectedItem="{Binding Source={StaticResource Locator},
-                                             Path=VirtualDeviceList.SelectedItem.Source.ProtocolName,
+                                             Path=VirtualDeviceList.SelectedItem.Source.CommProtocol,
                                                 Mode=TwoWay}"
                       />
 

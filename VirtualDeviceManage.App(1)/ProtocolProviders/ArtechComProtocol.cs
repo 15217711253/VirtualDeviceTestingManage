@@ -42,20 +42,28 @@ namespace VirtualDeviceManage.App.ProtocolProviders
 
             if (socketServer == null)
                 return;
-
-            if (base.DeviceId!=null && ComboBoxItemtoString(base.DeviceId)==(cus_msg.msg.Substring(1, 2)))
-            {
-                switch (cus_msg.msg.Substring(3, 3))
+            var Device = cus_msg.msg.Substring(1, 2);
+            if (base.DeviceId!=null && ComboBoxItemtoString(base.DeviceId)== Device)
+            {        
+                switch (Device)
                 {
                     //开机
                     case "ESS":
-                        base.Power = true;
-                        socketServer.Send(cus_msg.remoteEndPoint, "!"+ ComboBoxItemtoString(base.DeviceId)+"OK#");
-                        break;
+                            base.Power = true;
+                            socketServer.Send(cus_msg.remoteEndPoint, "!" + Device + "OK#");
+                            //根据当前状态判断控制是否成功执行
+                            //if (StatuestoBool(Device))
+                            //{
+                            //    base.Power = true;
+                            //    socketServer.Send(cus_msg.remoteEndPoint, "!" + Device + "OK#");
+                            //}
+                            //else
+                            //    socketServer.Send(cus_msg.remoteEndPoint, "!" + Device + "ERR#");
+                            break;
                     //关机
                     case "ESO":
                         base.Power = false;
-                        socketServer.Send(cus_msg.remoteEndPoint, "!" + ComboBoxItemtoString(base.DeviceId) + "OK#");
+                        socketServer.Send(cus_msg.remoteEndPoint, "!" + Device + "OK#");
                         break;
                     //表演段落
                     case "RSN":
@@ -63,7 +71,7 @@ namespace VirtualDeviceManage.App.ProtocolProviders
                         break;
                     //状态查询
                     case "STU":
-                        var statue =  GetStatues(cus_msg.msg.Substring(1, 2));
+                        var statue =  GetStatues(Device);
                         break;
                     default:
                         break;
@@ -79,10 +87,20 @@ namespace VirtualDeviceManage.App.ProtocolProviders
             if (bo) return "1";
             else return "0";
         }
+        /// <summary>
+        /// 从ComboBoxItem类型中获取数据
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
         private string ComboBoxItemtoString(object item)
         {
             return ((ComboBoxItem)item).Content.ToString();
         }
+        /// <summary>
+        /// 获取设备状态
+        /// </summary>
+        /// <param name="DeviceId"></param>
+        /// <returns></returns>
         private string GetStatues(string DeviceId)
         {
             string str;
@@ -139,6 +157,31 @@ namespace VirtualDeviceManage.App.ProtocolProviders
 
             }
             return str;
+        }
+
+        /// <summary>
+        /// 获取设备状态是否正常
+        /// </summary>
+        private bool StatuestoBool(string DeviceId)
+        {
+            switch (DeviceId)
+            {
+                case "A1":
+                    if (GetStatues(DeviceId) == "!A1SSSR1RN111111111#") return true;
+                    break;
+                case "A2":
+                    if (GetStatues(DeviceId) == "!A2SSSR1RN111111111#") return true;
+                    break;
+                case "A3":
+                    if (GetStatues(DeviceId) == "!A3SSSR1RN#") return true;
+                    break;
+                case "A4":
+                    if (GetStatues(DeviceId) == "!A4SSSR1RNN#") return true;
+                    break;
+                default:
+                    break;
+            }
+            return false;
         }
         public void doSomeWork()
         {

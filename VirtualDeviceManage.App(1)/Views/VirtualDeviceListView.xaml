@@ -30,13 +30,13 @@
 
                 <DataGridTemplateColumn  >
                     
-                    <DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.Header >
                         <CheckBox IsChecked="{Binding DataContext.isAllSelected ,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                     </DataGridTemplateColumn.Header>
                     
-                    <DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
-                            <CheckBox IsChecked="{Binding isSelected,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Command="{Binding IsCheckCommand}"
+                            <CheckBox Height="30" IsChecked="{Binding isSelected,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Command="{Binding IsCheckCommand}"
                                      />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -55,15 +55,7 @@
 
                 <DataGridTextColumn Header="通讯协议"
                                     Binding="{Binding Source.CommProtocol}" />
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <Button   Content="模拟现场控制"  CommandParameter="{Binding}" Height="30" Margin="10"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+
 
             </DataGrid.Columns>
         </DataGrid>
