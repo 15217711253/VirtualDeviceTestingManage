@@ -6,7 +6,6 @@
         xmlns:local="clr-namespace:VirtualDeviceManage.App.Views"
         mc:Ignorable="d"
         FontSize="16"
-        DataContext="{Binding Source={StaticResource Locator},Path=VirtualDeviceList.SelectedItem}"
         Title="AddOrEditData" Height="450" Width="600">
     <StackPanel Margin="8" >
         <TextBlock x:Name="AddOrEditTxt"
@@ -25,11 +24,10 @@
         
         <UniformGrid  Margin="0 5" Columns="3">
             <TextBlock Text="设备类型：" />
-            <ComboBox DataContext="{Binding Source={StaticResource Locator},Path=ProtocolCbox}"
-                        ItemsSource="{Binding CommProtocols}"
-                      SelectedItem="{Binding Source={StaticResource Locator},
-                                             Path=VirtualDeviceList.SelectedItem.Source.CommProtocol,
-                                                Mode=TwoWay}"
+            <ComboBox 
+                SelectedItem="{Binding CommProtocol}"
+                      ItemsSource="{Binding ProtocolCbox.CommProtocols,Source={StaticResource Locator} }"
+                      
                       />
 
         </UniformGrid>

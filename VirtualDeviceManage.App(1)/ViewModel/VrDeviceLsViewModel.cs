@@ -111,6 +111,7 @@ namespace VirtualDeviceManage.App.ViewModel
                     
                         VirtualDevices.ToList().ForEach(x => x.isSelected = false);
                     }
+                    _isAllSelected = value;
                 }
                 this.RaisePropertyChanged("isAllSelected");
             }
@@ -152,7 +153,7 @@ namespace VirtualDeviceManage.App.ViewModel
         {
             var alist = DbContext.VirtualDevices.ToList();
 
-            GlobalData.Ipadds = DbContext.VirtualDevices.ToList().ConvertAll(x => x.IpAddrees).ToArray();
+            GlobalData.Ipadds = DbContext.VirtualDevices.ToList().ConvertAll(x => x.IpAddrees).Distinct().ToArray();
             int ip_count = GlobalData.Ipadds.Length;
 
             string[] SubMarks = new string[ip_count];
@@ -170,7 +171,6 @@ namespace VirtualDeviceManage.App.ViewModel
                SubMarks, GateWays
                 );
 
-            Thread.Sleep(5000);
 
             var list = DbContext.VirtualDevices.ToList().ConvertAll(p=>new VrDeviceViewModelBase(p));
             VirtualDevices = new ObservableCollection<VrDeviceViewModelBase>(list);

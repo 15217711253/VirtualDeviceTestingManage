@@ -202,11 +202,15 @@
     <Compile Include="Interface\ICommProtocol.cs" />
     <Compile Include="ProtocolProviders\PJLinkCommProtocol.cs" />
     <Compile Include="GlobalData.cs" />
-    <Compile Include="ProtocolProviders\SampleBCommProtocol.cs" />
-    <Compile Include="ProtocolProviders\SampleACommProtocol.cs" />
-    <Compile Include="ViewModel\DeviceStatueViewModel\ArtechDeviceStatueViewModel.cs" />
+    <Compile Include="ProtocolProviders\ComputerCommProtocol.cs" />
+    <Compile Include="ProtocolProviders\TouchPaidCommProtocol.cs" />
+    <Compile Include="ProtocolProviders\MediaSoftCommProtocol.cs" />
+    <Compile Include="ViewModel\DeviceStatueViewModel\ArtechDeviceViewModel.cs" />
+    <Compile Include="ViewModel\DeviceStatueViewModel\MediaSoftDeviceViewModel.cs" />
+    <Compile Include="ViewModel\DeviceStatueViewModel\ComputerDeviceViewModel.cs" />
+    <Compile Include="ViewModel\DeviceStatueViewModel\TouchPaidDeviceViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
-    <Compile Include="ViewModel\DeviceStatueViewModel\PJLinkDeviceStatueViewModel.cs" />
+    <Compile Include="ViewModel\DeviceStatueViewModel\PJLinkDeviceViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="ViewModel\VirtualDevice\ProtocolCboxViewModel.cs" />
     <Compile Include="ViewModel\VirtualDevice\VrDeviceViewModelBase.cs" />
@@ -220,10 +224,19 @@
       <DependentUpon>ArtechDeviceView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DebugTestView.xaml.cs" />
+    <Compile Include="Views\DeviceStatuesView\MediaSoftDeviceView.xaml.cs">
+      <DependentUpon>MediaSoftDeviceView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DeviceStatuesView\PJLinkDeviceView.xaml.cs">
       <DependentUpon>PJLinkDeviceView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Interface\IDeviceStatusView.cs" />
+    <Compile Include="Views\DeviceStatuesView\TouchPaidDeviceView.xaml.cs">
+      <DependentUpon>TouchPaidDeviceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DeviceStatuesView\ComputerDeviceView.xaml.cs">
+      <DependentUpon>ComputerDeviceView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\VirtualDeviceDebugView.xaml.cs">
       <DependentUpon>VirtualDeviceDebugView.xaml</DependentUpon>
     </Compile>
@@ -254,7 +267,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\DeviceStatuesView\MediaSoftDeviceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\DeviceStatuesView\PJLinkDeviceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DeviceStatuesView\TouchPaidDeviceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DeviceStatuesView\ComputerDeviceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

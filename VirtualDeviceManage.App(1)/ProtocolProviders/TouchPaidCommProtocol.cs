@@ -27,6 +27,7 @@
 ***********************************************************************/
 
 
+using Common.SocketExtend;
 using SocketHeartEx.DotnetSocket;
 using System;
 using System.Collections.Generic;
@@ -37,28 +38,48 @@ using System.Threading.Tasks;
 using VirtualDeviceManage.App.CommProviders;
 using VirtualDeviceManage.App.DeviceVirtualStaute;
 using VirtualDeviceManage.App.Interface;
+using VirtualDeviceManage.App.ViewModel;
 
 namespace VirtualDeviceManage.App.ProtocolProviders
 {
     [Export(typeof(ICommProtocol))]
-    public class SampleACommProtocol : Artech_vStuate, ICommProtocol
+    public class TouchPaidCommProtocol : TouchPaidDeviceViewModel, ICommProtocol
     {
-        public SampleACommProtocol()
+        private DotnetSocketServer socketServer { get; set; }
+        public TouchPaidCommProtocol()
         {
 
         }
 
-        private DotnetSocketServer socketServer { get; set; }
-        public string Name { get; private set; } = "SampleA";
-
-        public SampleACommProtocol(DotnetSocketServer server)
+        public TouchPaidCommProtocol(DotnetSocketServer server)
         {
             socketServer = server;
         }
 
+        public string Name => "TouchPaid";
+
         public void RevMsg(object obj)
         {
-            // Todo : 写Sample A 接收后的方法
+            var cus_msg = obj as CustomMsg;
+
+            string RevStr = $"[{cus_msg.remoteEndPoint}] : {cus_msg.msg}";
+
+            if (socketServer == null)
+                return;
+
+
+            switch (cus_msg.msg)
+            {
+                case "#Power=1#": this.Power = true; socketServer.Send(cus_msg.remoteEndPoint, "ok"); break;
+                case "#Power=0#": this.Power = false; socketServer.Send(cus_msg.remoteEndPoint, "ok"); break;
+                case "?Power#": 
+                    if(Power)
+                    socketServer.Send(cus_msg.remoteEndPoint, "%Power=1!"); 
+                    else
+                        socketServer.Send(cus_msg.remoteEndPoint, "%Power=0!");
+                    break;
+                default: break;
+            }
             return;
         }
 

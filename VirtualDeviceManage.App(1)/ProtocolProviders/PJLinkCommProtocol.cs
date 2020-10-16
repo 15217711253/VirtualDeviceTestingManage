@@ -39,12 +39,12 @@ using System.Threading;
 using System.Threading.Tasks;
 using VirtualDeviceManage.App.DeviceVirtualStaute;
 using VirtualDeviceManage.App.Interface;
-using VirtualDeviceManage.App.ViewModel.DeviceStatueViewModel;
+using VirtualDeviceManage.App.ViewModel;
 
 namespace VirtualDeviceManage.App.CommProviders
 {
     [Export(typeof(ICommProtocol))]
-    public class PJLinkCommProtocol : PJLinkDeviceStatueViewModel, ICommProtocol
+    public class PJLinkCommProtocol : PJLinkDeviceViewModel, ICommProtocol
     {
         private DotnetSocketServer socketServer { get; set; }
         public string Name { get; private set; } = "PJLink";
@@ -70,32 +70,32 @@ namespace VirtualDeviceManage.App.CommProviders
             switch (cus_msg.msg)
             {
                 ///开机码
-                case "%1powr 1":
+                case "%1POWR 1":
                     
                     
                     Power = true; //改变投影机状态
-                    socketServer.Send(cus_msg.remoteEndPoint, "%1powr=ok");
+                    socketServer.Send(cus_msg.remoteEndPoint, "%1POWR=ok");
                     break;           
                     
                  ///关机码
-                case "%1powr 0":
+                case "%1POWR 0":
                     base.Power = false; //改变投影机状态
-                    socketServer.Send(cus_msg.remoteEndPoint, "%1powr=ok");
+                    socketServer.Send(cus_msg.remoteEndPoint, "%1POWR=ok");
                     break;
                  ///查询开关机状态
-                case "%1powr ?":       
+                case "%1POWR ?":       
                     if(base.Power)
-                        socketServer.Send(cus_msg.remoteEndPoint, "%1powr=1");
+                        socketServer.Send(cus_msg.remoteEndPoint, "%1POWR=1");
                     else
-                        socketServer.Send(cus_msg.remoteEndPoint, "%1powr=0");
+                        socketServer.Send(cus_msg.remoteEndPoint, "%1POWR=0");
                     break;
-                case "%1Lamp ?":
+                case "%1LAMP ?":
                     if (base.Power)
-                        socketServer.Send(cus_msg.remoteEndPoint, "%1Lamp="+base.LampTime+"1");
+                        socketServer.Send(cus_msg.remoteEndPoint, "%1LAMP=" + base.LampTime+"1");
                     else
-                        socketServer.Send(cus_msg.remoteEndPoint, "%1Lamp=" + base.LampTime + "0");
+                        socketServer.Send(cus_msg.remoteEndPoint, "%1LAMP=" + base.LampTime + "0");
                     break;
-                case " %1ERST ?":
+                case "%1ERST ?":
                     socketServer.Send(cus_msg.remoteEndPoint, GetStatue());
                     break;
 
@@ -107,16 +107,19 @@ namespace VirtualDeviceManage.App.CommProviders
 
         private string GetStatue()
         {
+            if (base.FanError == null)
+                return "Wrong";
+            
             string statue =
-                "%1ERST="
-                + ((KeyValuePair<int, string>)base.FanError).Key.ToString()
-                + ((KeyValuePair<int, string>)base.LightError).Key.ToString()
-                + ((KeyValuePair<int, string>)base.TempError).Key.ToString()
-                + ((KeyValuePair<int, string>)base.OpenCoverError).Key.ToString()
-                + ((KeyValuePair<int, string>)base.FilterError).Key.ToString()
-                + ((KeyValuePair<int, string>)base.OtherError).Key.ToString();
-
-            return statue;
+               "%1ERST="
+               + ((KeyValuePair<int, string>)base.FanError).Key.ToString()
+               + ((KeyValuePair<int, string>)base.LightError).Key.ToString()
+               + ((KeyValuePair<int, string>)base.TempError).Key.ToString()
+               + ((KeyValuePair<int, string>)base.OpenCoverError).Key.ToString()
+               + ((KeyValuePair<int, string>)base.FilterError).Key.ToString()
+               + ((KeyValuePair<int, string>)base.OtherError).Key.ToString();
+           return statue;
+ 
         }
 
         public void doSomeWork()

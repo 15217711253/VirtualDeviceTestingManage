@@ -27,6 +27,7 @@
 ***********************************************************************/
 
 
+using Common.SocketExtend;
 using SocketHeartEx.DotnetSocket;
 using System;
 using System.Collections.Generic;
@@ -37,28 +38,56 @@ using System.Threading.Tasks;
 using VirtualDeviceManage.App.CommProviders;
 using VirtualDeviceManage.App.DeviceVirtualStaute;
 using VirtualDeviceManage.App.Interface;
+using VirtualDeviceManage.App.ViewModel;
 
 namespace VirtualDeviceManage.App.ProtocolProviders
 {
     [Export(typeof(ICommProtocol))]
-    public class SampleBCommProtocol :SampleB_vStuate,ICommProtocol
+    public class ComputerCommProtocol : ComputerDeviceViewModel, ICommProtocol
     {
         private DotnetSocketServer socketServer { get; set; }
-        public SampleBCommProtocol()
+        public ComputerCommProtocol()
         {
 
         }
 
-        public SampleBCommProtocol(DotnetSocketServer server)
+        public ComputerCommProtocol(DotnetSocketServer server)
         {
             socketServer = server;
         }
 
-        public string Name => "SampleB";
+        public string Name => "Computer";
 
         public void RevMsg(object obj)
         {
-            // Todo : 写Sample B 接收后的方法
+            var cus_msg = obj as CustomMsg;
+
+            string RevStr = $"[{cus_msg.remoteEndPoint}] : {cus_msg.msg}";
+
+            if (socketServer == null)
+                return;
+
+
+            switch (cus_msg.msg)
+            {
+                case "?HARDWARE#":
+                    string SystemSources =
+                    "#HARDWARE=" +
+                    ",CPU:" + this.Cpu +
+                    ",TEMP:" + this.CpuTemp +
+                    ",ROM:" + this.Memory +
+                    ",DIRV:" + this.HardDisk + "#";
+                     
+                    socketServer.Send(cus_msg.remoteEndPoint, SystemSources); break;
+                case "?SOFTWARE#":   
+                    if(this.SoftWareOnline)
+                        socketServer.Send(cus_msg.remoteEndPoint, "#SOFTWARE=1#");
+                    else
+                        socketServer.Send(cus_msg.remoteEndPoint, "#SOFTWARE=0#");
+                    break;
+ 
+                default: break;
+            }
             return;
         }
 

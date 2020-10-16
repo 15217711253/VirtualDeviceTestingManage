@@ -41,33 +41,110 @@ namespace VirtualDeviceManage.App.Views
         }
 
  
+ 
 
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void RandomButton_Click(object sender, RoutedEventArgs e)
         {
-            var Select = (e.AddedItems[0] as ComboBoxItem).Content.ToString();
-            switch (Select.ToString())
-            {
-                case "A1":
-                    this.Statue_Mover_Grid.Visibility = Visibility.Visible;
-                    this.Statue_SERVO_Grid.Visibility = Visibility.Collapsed;
-                    break;
-                case "A2":
-                    this.Statue_Mover_Grid.Visibility = Visibility.Visible;
-                    this.Statue_SERVO_Grid.Visibility = Visibility.Collapsed;
-                    break;
-                case "A3":
-                    this.Statue_Mover_Grid.Visibility = Visibility.Collapsed;
-                    this.Statue_SERVO_Grid.Visibility = Visibility.Collapsed;
-                    break;
-                case "A4":
-                    this.Statue_SERVO_Grid.Visibility = Visibility.Visible;
-                    this.Statue_Mover_Grid.Visibility = Visibility.Collapsed;
-                    break;
-                default:
-                    break;
-            }
+            Random ran = new Random();
+            this.LiveControlRadioButton.IsChecked = (ran.Next() % 2 == 0);
+          
+            this.ShowIdTextBox.Text = ran.Next(0, 15).ToString();
+            
+            this.DeviceIdTextBox.Text = "0"+ran.Next(0, 6).ToString();
+
+            this.DeviceIdTextBox.Text = "01";
+            this.ModeComboBox.SelectedIndex = ran.Next(0, this.ModeComboBox.Items.Count);
+            this.EStopComboBox.SelectedIndex = ran.Next(0, this.EStopComboBox.Items.Count);
+            this.StatusComboBox.SelectedIndex = ran.Next(0, this.StatusComboBox.Items.Count);
+            this.APUComboBox.SelectedIndex = ran.Next(0, this.APUComboBox.Items.Count);
+            this.VolumeComboBox.SelectedIndex = ran.Next(0, this.VolumeComboBox.Items.Count);
+            this.Statue_Oiler1.IsChecked = (ran.Next() % 2 == 0);
+            this.Statue_Oiler2.IsChecked = (ran.Next() % 2 == 0);
+            this.Statue_Oiler3.IsChecked = (ran.Next() % 2 == 0);
+            this.Statue_Oiler4.IsChecked = (ran.Next() % 2 == 0);
+            this.Statue_Motor1.IsChecked = (ran.Next() % 2 == 0);
+            this.Statue_Motor2.IsChecked = (ran.Next() % 2 == 0);
+            this.Statue_Motor3.IsChecked = (ran.Next() % 2 == 0);
+            this.Statue_Motor4.IsChecked = (ran.Next() % 2 == 0);
+            this.Statue_Motor5.IsChecked = (ran.Next() % 2 == 0);
+            this.Statue_Motor6.IsChecked = (ran.Next() % 2 == 0);
+            this.Statue_Motor7.IsChecked = (ran.Next() % 2 == 0);
+            this.Statue_Motor8.IsChecked = (ran.Next() % 2 == 0);
+            this.Statue_Motor9.IsChecked = (ran.Next() % 2 == 0);
+            this.Statue_Motor10.IsChecked = (ran.Next() % 2 == 0);
+            this.Statue_Motor11.IsChecked = (ran.Next() % 2 == 0);
+            this.Statue_Motor12.IsChecked = (ran.Next() % 2 == 0);
+            this.Statue_Motor13.IsChecked = (ran.Next() % 2 == 0);
+            this.Statue_Motor14.IsChecked = (ran.Next() % 2 == 0);
+            this.Statue_Motor15.IsChecked = (ran.Next() % 2 == 0);
+            this.Statue_Motor16.IsChecked = (ran.Next() % 2 == 0);
+            this.Warm1.IsChecked = (ran.Next() % 2 == 0);
+            this.Warm2.IsChecked = (ran.Next() % 2 == 0);
+            this.Warm3.IsChecked = (ran.Next() % 2 == 0);
+            this.Warm4.IsChecked = (ran.Next() % 2 == 0);
+            this.Warm5.IsChecked = (ran.Next() % 2 == 0);
+            this.Warm6.IsChecked = (ran.Next() % 2 == 0);
+            this.Warm7.IsChecked = (ran.Next() % 2 == 0);
+            this.Warm8.IsChecked = (ran.Next() % 2 == 0);
+            this.Warm9.IsChecked = (ran.Next() % 2 == 0);
+            this.Warm10.IsChecked = (ran.Next() % 2 == 0);
+            this.Warm11.IsChecked = (ran.Next() % 2 == 0);
+            this.Warm12.IsChecked = (ran.Next() % 2 == 0);
+            this.Warm13.IsChecked = (ran.Next() % 2 == 0);
+            this.Warm14.IsChecked = (ran.Next() % 2 == 0);
+            this.Warm15.IsChecked = (ran.Next() % 2 == 0);
+            this.Warm16.IsChecked = (ran.Next() % 2 == 0);
+            
+
+
         }
 
-
+        private void NorMalButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.LiveControlRadioButton.IsChecked = true;
+            this.ShowIdTextBox.Text = "01";
+            this.DeviceIdTextBox.Text = "01"  ;
+            this.ModeComboBox.SelectedIndex = this.ModeComboBox.Items.Count-1;
+            this.EStopComboBox.SelectedIndex =  this.EStopComboBox.Items.Count-1;
+            this.StatusComboBox.SelectedIndex =  this.StatusComboBox.Items.Count-1;
+            this.APUComboBox.SelectedIndex =this.APUComboBox.Items.Count-1;
+            this.VolumeComboBox.SelectedIndex = this.VolumeComboBox.Items.Count-1;
+            this.Statue_Oiler1.IsChecked = true;
+            this.Statue_Oiler2.IsChecked = true;
+            this.Statue_Oiler3.IsChecked = true;
+            this.Statue_Oiler4.IsChecked = true;
+            this.Statue_Motor1.IsChecked = true;
+            this.Statue_Motor2.IsChecked = true;
+            this.Statue_Motor3.IsChecked = true;
+            this.Statue_Motor4.IsChecked = true;
+            this.Statue_Motor5.IsChecked = true;
+            this.Statue_Motor6.IsChecked = true;
+            this.Statue_Motor7.IsChecked = true;
+            this.Statue_Motor8.IsChecked = true;
+            this.Statue_Motor9.IsChecked = true;
+            this.Statue_Motor10.IsChecked = true;
+            this.Statue_Motor11.IsChecked = true;
+            this.Statue_Motor12.IsChecked = true;
+            this.Statue_Motor13.IsChecked = true;
+            this.Statue_Motor14.IsChecked = true;
+            this.Statue_Motor15.IsChecked = true;
+            this.Statue_Motor16.IsChecked = true;
+            this.Warm1.IsChecked = true;
+            this.Warm2.IsChecked = true;
+            this.Warm3.IsChecked = true;
+            this.Warm4.IsChecked = true;
+            this.Warm5.IsChecked = true;
+            this.Warm6.IsChecked = true;
+            this.Warm7.IsChecked = true;
+            this.Warm8.IsChecked = true;
+            this.Warm9.IsChecked = true;
+            this.Warm10.IsChecked = true;
+            this.Warm11.IsChecked = true;
+            this.Warm12.IsChecked = true;
+            this.Warm13.IsChecked = true;
+            this.Warm14.IsChecked = true;
+            this.Warm15.IsChecked = true;
+            this.Warm16.IsChecked = true;
+        }
     }
 }

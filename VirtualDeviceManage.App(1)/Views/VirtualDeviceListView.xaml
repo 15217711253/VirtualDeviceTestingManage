@@ -31,7 +31,10 @@
                 <DataGridTemplateColumn  >
                     
                     <DataGridTemplateColumn.Header >
-                        <CheckBox IsChecked="{Binding DataContext.isAllSelected ,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                        <CheckBox IsChecked="{Binding Path=DataContext.isAllSelected,
+                                             RelativeSource={RelativeSource Mode=FindAncestor,
+                                             AncestorType={x:Type ItemsControl}},
+                                            Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                     </DataGridTemplateColumn.Header>
                     
                     <DataGridTemplateColumn.CellTemplate >
@@ -85,7 +88,7 @@
                     HorizontalAlignment="Right"
                     Content="DelData"
                     VerticalAlignment="Center"
-                    Command="{Binding DelCommand}"
+                    Command="{Binding DelCommand_back}"
                     Width="75" />
 
             <Button x:Name="BTN_CHK_DATA"

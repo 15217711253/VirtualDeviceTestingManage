@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VirtualDeviceManage.App.ViewModel.DeviceStatueViewModel
+namespace VirtualDeviceManage.App.ViewModel
 {
-    public class PJLinkDeviceStatueViewModel : GalaSoft.MvvmLight.ViewModelBase
+    public class PJLinkDeviceViewModel : GalaSoft.MvvmLight.ViewModelBase
     {
-        public PJLinkDeviceStatueViewModel()
+        public PJLinkDeviceViewModel()
         {
             ErrCode = new Dictionary<int, string>();
             ErrCode.Add(0, "0：未检测到错误");

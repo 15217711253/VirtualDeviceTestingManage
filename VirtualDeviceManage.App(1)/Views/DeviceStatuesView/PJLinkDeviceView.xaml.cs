@@ -41,7 +41,7 @@ namespace VirtualDeviceManage.App.Views
         {
             Random ran = new Random();
             this.PowerRadioButton.IsChecked = (ran.Next() % 2 == 0);
-            this.LampTimeTextBox.Text = ran.Next(0, 10000).ToString();
+            this.LampTimeTextBox.Text = ran.Next(0, 99999).ToString();
             this.FanErrorComboBox.SelectedIndex = ran.Next(0,this.FanErrorComboBox.Items.Count);
             this.FilterErrorComboBox.SelectedIndex = ran.Next(0, this.FilterErrorComboBox.Items.Count);
             this.LightErrorComboBox.SelectedIndex = ran.Next(0, this.LightErrorComboBox.Items.Count);
