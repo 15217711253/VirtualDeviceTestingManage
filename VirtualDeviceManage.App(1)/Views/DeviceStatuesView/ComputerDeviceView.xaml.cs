@@ -36,6 +36,8 @@ namespace VirtualDeviceManage.App.Views
             base.Name = "Computer";
             DeBugUserControl.DataContext = vrDeviceDbugViewModel;
 
+
+            this.RandomButton_Click(null, null);
         }
 
         private void RandomButton_Click(object sender, RoutedEventArgs e)

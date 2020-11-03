@@ -35,6 +35,7 @@ namespace VirtualDeviceManage.App.Views
             InitializeComponent();
             base.Name = "TouchPaid";
             DeBugUserControl.DataContext = vrDeviceDbugViewModel;
+            this.RandomButton_Click(null, null);
 
         }
 

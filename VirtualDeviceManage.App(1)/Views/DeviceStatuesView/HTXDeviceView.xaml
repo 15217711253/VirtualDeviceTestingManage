@@ -1,0 +1,65 @@
+﻿<Window x:Class="VirtualDeviceManage.App.Views.HTXDeviceView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VirtualDeviceManage.App.Views"
+        mc:Ignorable="d"
+        Title="HTXDeviceView" Height="550" Width="300">
+    <Grid>
+        <StackPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left">
+            <TextBlock FontSize="32" Text="HTX动雕" Margin="0 10"/>
+            <UniformGrid Columns="2" Margin="5">
+                <TextBlock Text="电源" />
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox x:Name="PowerCheckBox" IsChecked="{Binding Power}"/>
+                </StackPanel>
+            </UniformGrid>
+            <UniformGrid Columns="2" Margin="2">
+                <TextBlock Text="表演段落" />
+                <TextBox x:Name="ShowIdTextBox" Text="{Binding ShowId ,UpdateSourceTrigger=PropertyChanged}"  />
+            </UniformGrid>
+            <StackPanel  Margin="2" x:Name="Statue_Motor_Grid">
+                <TextBlock Text="警告信息（16位）" />
+                <UniformGrid Rows="2">
+                    <CheckBox x:Name="warm1" Content="1"   IsChecked="{Binding DeviceWarm[0]}" />
+                    <CheckBox x:Name="warm2" Content="2"   IsChecked="{Binding DeviceWarm[1]}"/>
+                    <CheckBox x:Name="warm3" Content="3"   IsChecked="{Binding DeviceWarm[2]}"/>
+                    <CheckBox x:Name="warm4" Content="4"   IsChecked="{Binding DeviceWarm[3]}"/>
+                    <CheckBox x:Name="warm5" Content="5"   IsChecked="{Binding DeviceWarm[4]}"/>
+                    <CheckBox x:Name="warm6" Content="6"   IsChecked="{Binding DeviceWarm[5]}"/>
+                    <CheckBox x:Name="warm7" Content="7"   IsChecked="{Binding DeviceWarm[6]}"/>
+                    <CheckBox x:Name="warm8" Content="8"   IsChecked="{Binding DeviceWarm[7]}"/>
+                    <CheckBox x:Name="warm9" Content="9"   IsChecked="{Binding DeviceWarm[8]}"/>
+                    <CheckBox x:Name="warm10" Content="10" IsChecked="{Binding DeviceWarm[9]}" />
+                    <CheckBox x:Name="warm11" Content="11" IsChecked="{Binding DeviceWarm[10]}"/>
+                    <CheckBox x:Name="warm12" Content="12" IsChecked="{Binding DeviceWarm[11]}"/>
+                    <CheckBox x:Name="warm13" Content="13" IsChecked="{Binding DeviceWarm[12]}"/>
+                    <CheckBox x:Name="warm14" Content="14" IsChecked="{Binding DeviceWarm[13]}"/>
+                    <CheckBox x:Name="warm15" Content="15" IsChecked="{Binding DeviceWarm[14]}"/>
+                    <CheckBox x:Name="warm16" Content="16" IsChecked="{Binding DeviceWarm[15]}"/>
+                </UniformGrid>
+            </StackPanel>
+            <StackPanel  Margin="2">
+                <TextBlock Text="内部状态（8位）" />
+                <UniformGrid Rows="2">
+                    <CheckBox x:Name="InterStatues8" Content="指令有效"                               IsChecked="{Binding InterStatues[7],Mode=TwoWay}"/>
+                    <RadioButton x:Name="InterStatues7" Content="已开机"    GroupName="INGGroup"          IsChecked="{Binding InterStatues[6],Mode=TwoWay}"/>
+                    <RadioButton x:Name="InterStatues6" Content="已关机"    GroupName="INGGroup"          IsChecked="{Binding InterStatues[5],Mode=TwoWay}"/>
+                    <RadioButton x:Name="InterStatues5" Content="开机中"    GroupName="INGGroup"         IsChecked="{Binding InterStatues[4],Mode=TwoWay}"/>
+                    <RadioButton x:Name="InterStatues4" Content="关机中"    GroupName="INGGroup"         IsChecked="{Binding InterStatues[3],Mode=TwoWay}"/>
+                    <RadioButton x:Name="InterStatues3" Content="自检中"    GroupName="INGGroup"         IsChecked="{Binding InterStatues[2],Mode=TwoWay}"/>
+                    <RadioButton x:Name="InterStatues2" Content="复位中"    GroupName="INGGroup"         IsChecked="{Binding InterStatues[1],Mode=TwoWay}"/>
+                    <RadioButton x:Name="InterStatues1" Content="表演中"    GroupName="INGGroup"         IsChecked="{Binding InterStatues[0],Mode=TwoWay}" />
+                </UniformGrid>                                             
+            </StackPanel>
+            <StackPanel  Margin="2">
+                <TextBlock Text="其他错误信息" />
+                <CheckBox x:Name="ModeWrong" Content="模式开关错"    IsChecked="{Binding ModeWrong,Mode=TwoWay}"/>
+            </StackPanel>
+            <Button Content="随机状态" Click="RandomButton_Click" Margin="10"/>
+            <Button Content="正常状态" Click="NorMalButton_Click" Margin="10"/>
+            <local:DebugTestView Width="270" x:Name="DeBugUserControl"  />
+        </StackPanel>
+    </Grid>
+</Window>

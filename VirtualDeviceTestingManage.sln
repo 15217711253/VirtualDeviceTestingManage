@@ -17,6 +17,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocketHeartEx", "SocketHear
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualDeviceManage.App", "VirtualDeviceManage.App(1)\VirtualDeviceManage.App.csproj", "{683BAC0A-543A-42D1-9696-EA982655BC4F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{E4210960-7466-4E1E-9903-028AC2DFEEF1}"
+	ProjectSection(ProjectDependencies) = postProject
+		{683BAC0A-543A-42D1-9696-EA982655BC4F} = {683BAC0A-543A-42D1-9696-EA982655BC4F}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +56,10 @@ Global
 		{683BAC0A-543A-42D1-9696-EA982655BC4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{683BAC0A-543A-42D1-9696-EA982655BC4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{683BAC0A-543A-42D1-9696-EA982655BC4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4210960-7466-4E1E-9903-028AC2DFEEF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4210960-7466-4E1E-9903-028AC2DFEEF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4210960-7466-4E1E-9903-028AC2DFEEF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4210960-7466-4E1E-9903-028AC2DFEEF1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

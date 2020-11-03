@@ -194,21 +194,26 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Convert\ConvertProvider.cs" />
     <Compile Include="Interface\IDevice_Stuate.cs" />
     <Compile Include="DeviceVirtualStaute\Projector_vStuate.cs" />
     <Compile Include="DeviceVirtualStaute\SampleB_vStuate.cs" />
     <Compile Include="DeviceVirtualStaute\Artech_vStuate.cs" />
-    <Compile Include="ProtocolProviders\ArtechComProtocol.cs" />
+    <Compile Include="ProtocolProviders\ArtechCommProtocol.cs" />
     <Compile Include="Interface\ICommProtocol.cs" />
+    <Compile Include="ProtocolProviders\HTXCommProtocol.cs" />
     <Compile Include="ProtocolProviders\PJLinkCommProtocol.cs" />
     <Compile Include="GlobalData.cs" />
     <Compile Include="ProtocolProviders\ComputerCommProtocol.cs" />
     <Compile Include="ProtocolProviders\TouchPaidCommProtocol.cs" />
     <Compile Include="ProtocolProviders\MediaSoftCommProtocol.cs" />
+    <Compile Include="ProtocolProviders\XinShangCommProtocol.cs" />
     <Compile Include="ViewModel\DeviceStatueViewModel\ArtechDeviceViewModel.cs" />
+    <Compile Include="ViewModel\DeviceStatueViewModel\HTXDeviceViewModel.cs" />
     <Compile Include="ViewModel\DeviceStatueViewModel\MediaSoftDeviceViewModel.cs" />
     <Compile Include="ViewModel\DeviceStatueViewModel\ComputerDeviceViewModel.cs" />
     <Compile Include="ViewModel\DeviceStatueViewModel\TouchPaidDeviceViewModel.cs" />
+    <Compile Include="ViewModel\DeviceStatueViewModel\XinShangDeviceViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\DeviceStatueViewModel\PJLinkDeviceViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
@@ -224,6 +229,9 @@
       <DependentUpon>ArtechDeviceView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DebugTestView.xaml.cs" />
+    <Compile Include="Views\DeviceStatuesView\HTXDeviceView.xaml.cs">
+      <DependentUpon>HTXDeviceView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DeviceStatuesView\MediaSoftDeviceView.xaml.cs">
       <DependentUpon>MediaSoftDeviceView.xaml</DependentUpon>
     </Compile>
@@ -236,6 +244,9 @@
     </Compile>
     <Compile Include="Views\DeviceStatuesView\ComputerDeviceView.xaml.cs">
       <DependentUpon>ComputerDeviceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DeviceStatuesView\XinShangDeviceView.xaml.cs">
+      <DependentUpon>XinShangDeviceView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\VirtualDeviceDebugView.xaml.cs">
       <DependentUpon>VirtualDeviceDebugView.xaml</DependentUpon>
@@ -267,6 +278,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\DeviceStatuesView\HTXDeviceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\DeviceStatuesView\MediaSoftDeviceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -280,6 +295,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\DeviceStatuesView\ComputerDeviceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DeviceStatuesView\XinShangDeviceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

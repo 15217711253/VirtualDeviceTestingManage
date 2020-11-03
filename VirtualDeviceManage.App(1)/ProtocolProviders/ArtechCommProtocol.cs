@@ -19,16 +19,16 @@ namespace VirtualDeviceManage.App.ProtocolProviders
 {
  
     [Export(typeof(ICommProtocol))]
-    public class ArtechComProtocol : ArtechDeviceViewModel, ICommProtocol
+    public class ArtechCommProtocol : ArtechDeviceViewModel, ICommProtocol
     {
         private DotnetSocketServer socketServer { get; set; }
         public string Name { get; private set; } = "Artech";
 
-        public ArtechComProtocol(DotnetSocketServer server)
+        public ArtechCommProtocol(DotnetSocketServer server)
         {
             socketServer = server;
         }
-        public ArtechComProtocol()
+        public ArtechCommProtocol()
         {
         }
         public void RevMsg(object obj)
@@ -85,7 +85,7 @@ namespace VirtualDeviceManage.App.ProtocolProviders
 
                     //音量调整
                     case "VOL":
-                            base.ShowId = int.Parse(cus_msg.msg.Substring(8, 1));
+                            base.Volume = int.Parse(cus_msg.msg.Substring(8, 1));
                             socketServer.Send(cus_msg.remoteEndPoint, "!" + Device + "OK#");
                             break;
 
@@ -108,47 +108,7 @@ namespace VirtualDeviceManage.App.ProtocolProviders
 
         }
 
-        /// <summary>
-        /// 16位bool数组转为16进制字符串
-        /// </summary>
-        /// <param name="bo"></param>
-        /// <returns></returns>
-        private string ConvertBoolListToASC(List<bool> bo)
-        {
-            int len = bo.Count;
-            int value = 0;
-            string result="";
-            if (len <= 16 && len>8)
-            {
-                byte[] bytes = new byte[2];
-                foreach (bool b in bo)
-                {
-                    value = (value << 1) + (b ? 1 : 0);
-                }
-                if ((byte)((value >> 8) & 0xFF) != 0)
-                    bytes[0]=((byte)((value >> 8) & 0xFF));
-                if ((byte)((value) & 0xFF) != 0)
-                    bytes[1]=((byte)((value) & 0xFF));
-
-                result = BitConverter.ToString(bytes).Replace("-", "");
-            }
-            else if(len<=8)
-            {
-                byte[] bytes = new byte[1];
-                foreach (bool b in bo)
-                {
-                    value = (value << 1) + (b ? 1 : 0);
-                } 
-                if ((byte)((value) & 0xFF) != 0)
-                    bytes[0] = ((byte)((value) & 0xFF));
-
-                result = BitConverter.ToString(bytes).Replace("-", "");
-            }
-
-
-            return result;
-
-        }
+ 
         /// <summary>
         /// 从ComboBoxItem类型中获取数据
         /// </summary>
@@ -179,7 +139,7 @@ namespace VirtualDeviceManage.App.ProtocolProviders
                 else
                     str += "S";
             } 
-            str = str + ConvertBoolListToASC(base.Statue_Motor);
+            str = str + ConvertProvider.ConvertBoolListToByteASC(base.Statue_Motor);
             str = str + "#";
            
             return str;
@@ -194,35 +154,35 @@ namespace VirtualDeviceManage.App.ProtocolProviders
             string str;
             str = "!" + base.DeviceId +
                  base.DeviceId ;
-            str = str +  ConvertBoolListToASC(base.Warm);  
+            str = str + ConvertProvider.ConvertBoolListToByteASC(base.Warm);  
             str = str + "#";
 
             return str;
         }
-        /// <summary>
-        /// 获取设备状态是否正常
-        /// </summary>
-        private bool StatuestoBool(string DeviceId)
-        {
-            switch (DeviceId)
-            {
-                case "A1":
-                    if (GetStatues() == "!A1SSSR1RN111111111#") return true;
-                    break;
-                case "A2":
-                    if (GetStatues() == "!A2SSSR1RN111111111#") return true;
-                    break;
-                case "A3":
-                    if (GetStatues() == "!A3SSSR1RN#") return true;
-                    break;
-                case "A4":
-                    if (GetStatues() == "!A4SSSR1RNN#") return true;
-                    break;
-                default:
-                    break;
-            }
-            return false;
-        }
+        ///// <summary>
+        ///// 获取设备状态是否正常
+        ///// </summary>
+        //private bool StatuestoBool(string DeviceId)
+        //{
+        //    switch (DeviceId)
+        //    {
+        //        case "A1":
+        //            if (GetStatues() == "!A1SSSR1RN111111111#") return true;
+        //            break;
+        //        case "A2":
+        //            if (GetStatues() == "!A2SSSR1RN111111111#") return true;
+        //            break;
+        //        case "A3":
+        //            if (GetStatues() == "!A3SSSR1RN#") return true;
+        //            break;
+        //        case "A4":
+        //            if (GetStatues() == "!A4SSSR1RNN#") return true;
+        //            break;
+        //        default:
+        //            break;
+        //    }
+        //    return false;
+        //}
         public void doSomeWork()
         {
             //base.Power=!base.Power ;

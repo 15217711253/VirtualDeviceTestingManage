@@ -67,10 +67,10 @@ namespace VirtualDeviceManage.App.DeviceVirtualStaute
 
         public bool IsOpen
         {
-            get { return IsOpen; }
+            get { return _IsOpen; }
             set
             {
-                IsOpen = value;
+                _IsOpen = value;
                 this.RaisePropertyChanged("IsOpen");
             }
         }

@@ -34,7 +34,7 @@ namespace VirtualDeviceManage.App.Views
             InitializeComponent();
             base.Name = "PJLink";
             DeBugUserControl.DataContext = vrDeviceDbugViewModel;
-
+            this.RandomButton_Click(null, null);
         }
 
         private void RandomButton_Click(object sender, RoutedEventArgs e)
