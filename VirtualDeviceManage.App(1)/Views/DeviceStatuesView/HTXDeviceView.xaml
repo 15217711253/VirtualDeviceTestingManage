@@ -22,22 +22,22 @@
             <StackPanel  Margin="2" x:Name="Statue_Motor_Grid">
                 <TextBlock Text="警告信息（16位）" />
                 <UniformGrid Rows="2">
-                    <CheckBox x:Name="warm1" Content="1"   IsChecked="{Binding DeviceWarm[0]}" />
-                    <CheckBox x:Name="warm2" Content="2"   IsChecked="{Binding DeviceWarm[1]}"/>
-                    <CheckBox x:Name="warm3" Content="3"   IsChecked="{Binding DeviceWarm[2]}"/>
-                    <CheckBox x:Name="warm4" Content="4"   IsChecked="{Binding DeviceWarm[3]}"/>
-                    <CheckBox x:Name="warm5" Content="5"   IsChecked="{Binding DeviceWarm[4]}"/>
-                    <CheckBox x:Name="warm6" Content="6"   IsChecked="{Binding DeviceWarm[5]}"/>
-                    <CheckBox x:Name="warm7" Content="7"   IsChecked="{Binding DeviceWarm[6]}"/>
-                    <CheckBox x:Name="warm8" Content="8"   IsChecked="{Binding DeviceWarm[7]}"/>
-                    <CheckBox x:Name="warm9" Content="9"   IsChecked="{Binding DeviceWarm[8]}"/>
-                    <CheckBox x:Name="warm10" Content="10" IsChecked="{Binding DeviceWarm[9]}" />
-                    <CheckBox x:Name="warm11" Content="11" IsChecked="{Binding DeviceWarm[10]}"/>
-                    <CheckBox x:Name="warm12" Content="12" IsChecked="{Binding DeviceWarm[11]}"/>
-                    <CheckBox x:Name="warm13" Content="13" IsChecked="{Binding DeviceWarm[12]}"/>
-                    <CheckBox x:Name="warm14" Content="14" IsChecked="{Binding DeviceWarm[13]}"/>
-                    <CheckBox x:Name="warm15" Content="15" IsChecked="{Binding DeviceWarm[14]}"/>
-                    <CheckBox x:Name="warm16" Content="16" IsChecked="{Binding DeviceWarm[15]}"/>
+                    <CheckBox x:Name="warm1" Content="8"   IsChecked="{Binding DeviceWarm[0]}" />
+                    <CheckBox x:Name="warm2" Content="7"   IsChecked="{Binding DeviceWarm[1]}"/>
+                    <CheckBox x:Name="warm3" Content="6"   IsChecked="{Binding DeviceWarm[2]}"/>
+                    <CheckBox x:Name="warm4" Content="5"   IsChecked="{Binding DeviceWarm[3]}"/>
+                    <CheckBox x:Name="warm5" Content="4"   IsChecked="{Binding DeviceWarm[4]}"/>
+                    <CheckBox x:Name="warm6" Content="3"   IsChecked="{Binding DeviceWarm[5]}"/>
+                    <CheckBox x:Name="warm7" Content="2"   IsChecked="{Binding DeviceWarm[6]}"/>
+                    <CheckBox x:Name="warm8" Content="1"   IsChecked="{Binding DeviceWarm[7]}"/>
+                    <CheckBox x:Name="warm9" Content="16"   IsChecked="{Binding DeviceWarm[8]}"/>
+                    <CheckBox x:Name="warm10" Content="15" IsChecked="{Binding DeviceWarm[9]}" />
+                    <CheckBox x:Name="warm11" Content="14" IsChecked="{Binding DeviceWarm[10]}"/>
+                    <CheckBox x:Name="warm12" Content="13" IsChecked="{Binding DeviceWarm[11]}"/>
+                    <CheckBox x:Name="warm13" Content="12" IsChecked="{Binding DeviceWarm[12]}"/>
+                    <CheckBox x:Name="warm14" Content="11" IsChecked="{Binding DeviceWarm[13]}"/>
+                    <CheckBox x:Name="warm15" Content="10" IsChecked="{Binding DeviceWarm[14]}"/>
+                    <CheckBox x:Name="warm16" Content="9" IsChecked="{Binding DeviceWarm[15]}"/>
                 </UniformGrid>
             </StackPanel>
             <StackPanel  Margin="2">

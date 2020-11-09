@@ -215,7 +215,7 @@ namespace SocketHeartEx.DotnetSocket
         public void Send(string key,string msg)
         {
             byte[] bytes = new byte[2048];
-            var smsg = msg + "<EOF>";
+            var smsg = msg;
             bytes = Encoding.Default.GetBytes(smsg);
             //获取combobox的值 从泛型集合中获取对应的客户端socket 然后发送数据
             if (socketList.Count != 0)
@@ -234,8 +234,29 @@ namespace SocketHeartEx.DotnetSocket
             {
                 Console.WriteLine("当前无连接的客户端" + "\r\n");
             }
-        
         }
+
+        public void SendBytes(string key, List<byte> msg)
+        {  
+            //获取combobox的值 从泛型集合中获取对应的客户端socket 然后发送数据
+            if (socketList.Count != 0)
+            {
+                if (key == null)
+                {
+                    Console.WriteLine("请选择一个客户端发送数据!");
+                    return;
+                }
+                else
+                {
+                    socketList[key].Send((byte[])msg.ToArray());
+                }
+            }
+            else
+            {
+                Console.WriteLine("当前无连接的客户端" + "\r\n");
+            }
+        }
+
 
         public void Stop()
         {

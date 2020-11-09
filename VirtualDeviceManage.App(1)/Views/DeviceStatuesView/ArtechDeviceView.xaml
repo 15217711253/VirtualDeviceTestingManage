@@ -8,7 +8,7 @@
         Title="ArtechDeviceView" Height="600" Width="300">
     <Grid>
         <StackPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left">
-            <TextBlock FontSize="28" Text="动雕" Margin="5 7"/>
+            <TextBlock FontSize="28" Text="Artech动雕" Margin="5 7"/>
  
             <UniformGrid Columns="2" Margin="2">
                 <TextBlock Text="动雕ID" />
@@ -108,7 +108,7 @@
                     <CheckBox x:Name="Statue_Oiler4" Content="4" IsChecked="{Binding Statue_Oiler[3]}"/>
                 </StackPanel>
             </StackPanel>
-            <StackPanel  Margin="2" x:Name="Statue_Motor_Grid">
+            <StackPanel  Margin="2" x:Name="Statue_Motor_Grid" Visibility="Collapsed">
                 <TextBlock Text="电机状况（16位）" />
                 <UniformGrid Rows="2">
                     <CheckBox x:Name="Statue_Motor1" Content="1" IsChecked="{Binding Statue_Motor[0]}" />
@@ -132,22 +132,22 @@
             <StackPanel  Margin="2" x:Name="Warm_Grid">
                 <TextBlock Text="警报状态（16位）" />
                 <UniformGrid Rows="4"   >
-                    <CheckBox x:Name="Warm1" Content="红外1" IsChecked="{Binding Warm[0]}" />
-                    <CheckBox x:Name="Warm2" Content="红外2" IsChecked="{Binding Warm[1]}"/>
-                    <CheckBox x:Name="Warm3" Content="红外3" IsChecked="{Binding Warm[2]}"/>
-                    <CheckBox x:Name="Warm4" Content="红外4" IsChecked="{Binding Warm[3]}"/>
-                    <CheckBox x:Name="Warm5" Content="压感1" IsChecked="{Binding Warm[4]}"/>
-                    <CheckBox x:Name="Warm6" Content="压感2" IsChecked="{Binding Warm[5]}"/>
-                    <CheckBox x:Name="Warm7" Content="压感3" IsChecked="{Binding Warm[6]}"/>
-                    <CheckBox x:Name="Warm8" Content="门感1" IsChecked="{Binding Warm[7]}"/>
-                    <CheckBox x:Name="Warm9" Content="油压" IsChecked="{Binding Warm[8]}"/>
-                    <CheckBox x:Name="Warm10" Content="HPU STOP" IsChecked="{Binding Warm[9]}" />
-                    <CheckBox x:Name="Warm11" Content="HPU FAULT" IsChecked="{Binding Warm[10]}"/>
-                    <CheckBox x:Name="Warm12" Content="N/A" IsChecked="{Binding Warm[11]}"/>
-                    <CheckBox x:Name="Warm13" Content="N/A" IsChecked="{Binding Warm[12]}"/>
-                    <CheckBox x:Name="Warm14" Content="N/A" IsChecked="{Binding Warm[13]}"/>
-                    <CheckBox x:Name="Warm15" Content="N/A" IsChecked="{Binding Warm[14]}"/>
-                    <CheckBox x:Name="Warm16" Content="N/A" IsChecked="{Binding Warm[15]}"/>
+                    <CheckBox x:Name="Warm1" Content="红外1" IsChecked="{Binding Warm[15]}" />
+                    <CheckBox x:Name="Warm2" Content="红外2" IsChecked="{Binding Warm[14]}"/>
+                    <CheckBox x:Name="Warm3" Content="红外3" IsChecked="{Binding Warm[13]}"/>
+                    <CheckBox x:Name="Warm4" Content="红外4" IsChecked="{Binding Warm[12]}"/>
+                    <CheckBox x:Name="Warm5" Content="压感1" IsChecked="{Binding Warm[11]}"/>
+                    <CheckBox x:Name="Warm6" Content="压感2" IsChecked="{Binding Warm[10]}"/>
+                    <CheckBox x:Name="Warm7" Content="压感3" IsChecked="{Binding Warm[9]}"/>
+                    <CheckBox x:Name="Warm8" Content="门感1" IsChecked="{Binding Warm[8]}"/>
+                    <CheckBox x:Name="Warm9" Content="油压" IsChecked="{Binding Warm[7]}"/>
+                    <CheckBox x:Name="Warm10" Content="HPU STOP" IsChecked="{Binding Warm[6]}" />
+                    <CheckBox x:Name="Warm11" Content="HPU FAULT" IsChecked="{Binding Warm[5]}"/>
+                    <CheckBox x:Name="Warm12" Content="N/A" IsChecked="{Binding Warm[4]}"/>
+                    <CheckBox x:Name="Warm13" Content="N/A" IsChecked="{Binding Warm[3]}"/>
+                    <CheckBox x:Name="Warm14" Content="N/A" IsChecked="{Binding Warm[2]}"/>
+                    <CheckBox x:Name="Warm15" Content="N/A" IsChecked="{Binding Warm[1]}"/>
+                    <CheckBox x:Name="Warm16" Content="N/A" IsChecked="{Binding Warm[0]}"/>
                 </UniformGrid>
             </StackPanel>
             <Button Content="随机状态" Click="RandomButton_Click" Margin="5"/>

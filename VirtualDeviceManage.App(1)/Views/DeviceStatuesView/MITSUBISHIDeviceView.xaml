@@ -1,0 +1,75 @@
+﻿<Window x:Class="VirtualDeviceManage.App.Views.MITSUBISHIDeviceView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VirtualDeviceManage.App.Views"
+        mc:Ignorable="d"
+        Title="MITSUBISHIDeviceView" Height="600" Width="300">
+    <Grid>
+        <StackPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left">
+            <TextBlock FontSize="28" Text="新尚动雕" Margin="5 7"/>
+
+            <UniformGrid Columns="2" Margin="2">
+                <TextBlock Text="电源"/>
+                <UniformGrid Columns="2">
+                    <RadioButton x:Name="LiveControlRadioButton" Content="ON" GroupName="PowerGroup" IsChecked="{Binding Power}"/>
+                    <RadioButton Content="Off"  GroupName="PowerGroup" >
+                        <RadioButton.Style>
+                            <Style TargetType="RadioButton">
+                                <Style.Triggers>
+                                    <DataTrigger  Binding="{Binding Power}"   Value="false">
+                                        <Setter Property="IsChecked" Value="True"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </RadioButton.Style>
+
+                    </RadioButton>
+                </UniformGrid>
+            </UniformGrid >
+            <UniformGrid Columns="2" Margin="2">
+                <TextBlock Text="表演模式" />
+                <ComboBox  x:Name="ShowModeComboBox"   
+                              SelectedItem="{Binding ShowMode}"
+                        SelectedIndex="2"
+                          >
+                    <ComboBoxItem Content="1 节假日模式"/>
+                    <ComboBoxItem Content="2 周末模式"/>
+                    <ComboBoxItem Content="3 平时模式"/> 
+                </ComboBox>
+            </UniformGrid>
+            <UniformGrid Columns="2" Margin="2">
+                <TextBlock Text="目前状态" />
+                <ComboBox  x:Name="StatueComboBox"   
+                              SelectedItem="{Binding Statue}"
+                        SelectedIndex="2"
+                          >
+                    <ComboBoxItem Content="1 Ready就绪"/>
+                    <ComboBoxItem Content="2 Busy忙"/>
+                    <ComboBoxItem Content="3 Fault故障"/>
+                    <ComboBoxItem Content="4 E-STOP急停"/> 
+                </ComboBox>
+            </UniformGrid>
+
+            <StackPanel  Margin="2" x:Name="Statue_Motor_Grid">
+                <TextBlock Text="驱动故障（16位）" />
+                <UniformGrid Rows="2">
+                    <CheckBox x:Name="warm1" Content="8号驱动"   IsChecked="{Binding Devices[0]}" />
+                    <CheckBox x:Name="warm2" Content="7号驱动"   IsChecked="{Binding Devices[1]}"/>
+                    <CheckBox x:Name="warm3" Content="6号驱动"   IsChecked="{Binding Devices[2]}"/>
+                    <CheckBox x:Name="warm4" Content="5号驱动"   IsChecked="{Binding Devices[3]}"/>
+                    <CheckBox x:Name="warm5" Content="4号驱动"   IsChecked="{Binding Devices[4]}"/>
+                    <CheckBox x:Name="warm6" Content="3号驱动"   IsChecked="{Binding Devices[5]}"/>
+                    <CheckBox x:Name="warm7" Content="2号驱动"   IsChecked="{Binding Devices[6]}"/>
+                    <CheckBox x:Name="warm8" Content="1号驱动"   IsChecked="{Binding Devices[7]}"/>
+                </UniformGrid>
+            </StackPanel>
+ 
+            <!--<Button Content="随机状态" Click="RandomButton_Click" Margin="5"/>
+            <Button Content="正常状态" Click="NorMalButton_Click" Margin="5"/>-->
+            <local:DebugTestView Width="270" x:Name="DeBugUserControl"  />
+        </StackPanel>
+
+    </Grid>
+</Window>

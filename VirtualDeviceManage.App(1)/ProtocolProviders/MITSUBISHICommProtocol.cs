@@ -12,17 +12,17 @@ using VirtualDeviceManage.App.ViewModel;
 namespace VirtualDeviceManage.App.ProtocolProviders
 {
     [Export(typeof(ICommProtocol))]
-    class XinShangCommProtocol : XinShangDeviceViewModel, ICommProtocol
+    class MITSUBISHICommProtocol : MITSUBISHIDeviceViewModel, ICommProtocol
     {
 
         private DotnetSocketServer socketServer { get; set; }
-        public string Name { get; private set; } = "XinShang";
+        public string Name { get; private set; } = "MITSUBISHI";
 
-        public XinShangCommProtocol(DotnetSocketServer server)
+        public MITSUBISHICommProtocol(DotnetSocketServer server)
         {
             socketServer = server;
         }
-        public XinShangCommProtocol()
+        public MITSUBISHICommProtocol()
         {
         }
         public void RevMsg(object obj)

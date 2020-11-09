@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace VirtualDeviceManage.App.Views
 {
     /// <summary>
-    /// XinShangDeviceView.xaml 的交互逻辑
+    /// MITSUBISHIDeviceView.xaml 的交互逻辑
     /// </summary>
-    public partial class XinShangDeviceView : Window
+    public partial class MITSUBISHIDeviceView : Window
     {
-        public XinShangDeviceView()
+        public MITSUBISHIDeviceView()
         {
             InitializeComponent();
         }

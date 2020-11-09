@@ -10,7 +10,7 @@ using VirtualDeviceTestingManage.Dal;
 namespace VirtualDeviceTestingManage.Dal.Migrations
 {
     [DbContext(typeof(VirtualDeviceManageContext))]
-    [Migration("20200915014951_InitVirtualDb")]
+    [Migration("20201103080504_InitVirtualDb")]
     partial class InitVirtualDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

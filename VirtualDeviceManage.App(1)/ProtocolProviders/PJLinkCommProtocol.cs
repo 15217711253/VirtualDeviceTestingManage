@@ -36,8 +36,6 @@ using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
-using VirtualDeviceManage.App.DeviceVirtualStaute;
 using VirtualDeviceManage.App.Interface;
 using VirtualDeviceManage.App.ViewModel;
 
@@ -72,7 +70,6 @@ namespace VirtualDeviceManage.App.CommProviders
                 ///开机码
                 case "%1POWR 1":
                     
-                    
                     Power = true; //改变投影机状态
                     socketServer.Send(cus_msg.remoteEndPoint, "%1POWR=ok");
                     break;           
@@ -97,8 +94,7 @@ namespace VirtualDeviceManage.App.CommProviders
                     break;
                 case "%1ERST ?":
                     socketServer.Send(cus_msg.remoteEndPoint, GetStatue());
-                    break;
-
+                    break; 
                 default :
                     break;
             }

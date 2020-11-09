@@ -3,11 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30309.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VirtualDeviceTestingManage", "VirtualDeviceTestingManage\VirtualDeviceTestingManage.csproj", "{66F0121E-6B90-44C2-B4C3-77E833B6AAAB}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VirtualDeviceTestingManage.Common", "VirtualDeviceTestingManage.Common\VirtualDeviceTestingManage.Common.csproj", "{4504F7E2-0F6D-4AA4-9F08-B2BCEEACBA0F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp_Test", "ConsoleApp_Test\ConsoleApp_Test.csproj", "{496B70A0-9703-42D4-AD95-997C82284DC5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VirtualDeviceTestingManage.Domain", "VirtualDeviceTestingManage.Domain\VirtualDeviceTestingManage.Domain.csproj", "{29D37F61-74D4-41E7-B744-2770A93D9FD1}"
 EndProject
@@ -17,29 +13,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocketHeartEx", "SocketHear
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualDeviceManage.App", "VirtualDeviceManage.App(1)\VirtualDeviceManage.App.csproj", "{683BAC0A-543A-42D1-9696-EA982655BC4F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{E4210960-7466-4E1E-9903-028AC2DFEEF1}"
-	ProjectSection(ProjectDependencies) = postProject
-		{683BAC0A-543A-42D1-9696-EA982655BC4F} = {683BAC0A-543A-42D1-9696-EA982655BC4F}
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{66F0121E-6B90-44C2-B4C3-77E833B6AAAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{66F0121E-6B90-44C2-B4C3-77E833B6AAAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{66F0121E-6B90-44C2-B4C3-77E833B6AAAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{66F0121E-6B90-44C2-B4C3-77E833B6AAAB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4504F7E2-0F6D-4AA4-9F08-B2BCEEACBA0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4504F7E2-0F6D-4AA4-9F08-B2BCEEACBA0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4504F7E2-0F6D-4AA4-9F08-B2BCEEACBA0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4504F7E2-0F6D-4AA4-9F08-B2BCEEACBA0F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{496B70A0-9703-42D4-AD95-997C82284DC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{496B70A0-9703-42D4-AD95-997C82284DC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{496B70A0-9703-42D4-AD95-997C82284DC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{496B70A0-9703-42D4-AD95-997C82284DC5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{29D37F61-74D4-41E7-B744-2770A93D9FD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{29D37F61-74D4-41E7-B744-2770A93D9FD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{29D37F61-74D4-41E7-B744-2770A93D9FD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -56,10 +39,6 @@ Global
 		{683BAC0A-543A-42D1-9696-EA982655BC4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{683BAC0A-543A-42D1-9696-EA982655BC4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{683BAC0A-543A-42D1-9696-EA982655BC4F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E4210960-7466-4E1E-9903-028AC2DFEEF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E4210960-7466-4E1E-9903-028AC2DFEEF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E4210960-7466-4E1E-9903-028AC2DFEEF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E4210960-7466-4E1E-9903-028AC2DFEEF1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

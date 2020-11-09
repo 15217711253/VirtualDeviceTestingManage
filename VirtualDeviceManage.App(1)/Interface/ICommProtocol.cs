@@ -27,7 +27,7 @@
 ***********************************************************************/
 
 
-using VirtualDeviceManage.App.DeviceVirtualStaute;
+using VirtualDeviceManage.App;
 
 namespace VirtualDeviceManage.App.Interface
 {

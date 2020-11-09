@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.EntityFrameworkCore.Design.3.1.7\build\net461\Microsoft.EntityFrameworkCore.Design.props" Condition="Exists('..\packages\Microsoft.EntityFrameworkCore.Design.3.1.7\build\net461\Microsoft.EntityFrameworkCore.Design.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -63,6 +64,9 @@
     </Reference>
     <Reference Include="Microsoft.EntityFrameworkCore.Abstractions, Version=3.1.7.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.EntityFrameworkCore.Abstractions.3.1.7\lib\netstandard2.0\Microsoft.EntityFrameworkCore.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EntityFrameworkCore.Design, Version=3.1.7.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.EntityFrameworkCore.Design.3.1.7\lib\netstandard2.0\Microsoft.EntityFrameworkCore.Design.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.EntityFrameworkCore.Relational, Version=3.1.7.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.EntityFrameworkCore.Relational.3.1.7\lib\netstandard2.0\Microsoft.EntityFrameworkCore.Relational.dll</HintPath>
@@ -196,9 +200,6 @@
     </ApplicationDefinition>
     <Compile Include="Convert\ConvertProvider.cs" />
     <Compile Include="Interface\IDevice_Stuate.cs" />
-    <Compile Include="DeviceVirtualStaute\Projector_vStuate.cs" />
-    <Compile Include="DeviceVirtualStaute\SampleB_vStuate.cs" />
-    <Compile Include="DeviceVirtualStaute\Artech_vStuate.cs" />
     <Compile Include="ProtocolProviders\ArtechCommProtocol.cs" />
     <Compile Include="Interface\ICommProtocol.cs" />
     <Compile Include="ProtocolProviders\HTXCommProtocol.cs" />
@@ -207,13 +208,13 @@
     <Compile Include="ProtocolProviders\ComputerCommProtocol.cs" />
     <Compile Include="ProtocolProviders\TouchPaidCommProtocol.cs" />
     <Compile Include="ProtocolProviders\MediaSoftCommProtocol.cs" />
-    <Compile Include="ProtocolProviders\XinShangCommProtocol.cs" />
+    <Compile Include="ProtocolProviders\MITSUBISHICommProtocol.cs" />
     <Compile Include="ViewModel\DeviceStatueViewModel\ArtechDeviceViewModel.cs" />
     <Compile Include="ViewModel\DeviceStatueViewModel\HTXDeviceViewModel.cs" />
     <Compile Include="ViewModel\DeviceStatueViewModel\MediaSoftDeviceViewModel.cs" />
     <Compile Include="ViewModel\DeviceStatueViewModel\ComputerDeviceViewModel.cs" />
     <Compile Include="ViewModel\DeviceStatueViewModel\TouchPaidDeviceViewModel.cs" />
-    <Compile Include="ViewModel\DeviceStatueViewModel\XinShangDeviceViewModel.cs" />
+    <Compile Include="ViewModel\DeviceStatueViewModel\MITSUBISHIDeviceViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\DeviceStatueViewModel\PJLinkDeviceViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
@@ -245,8 +246,8 @@
     <Compile Include="Views\DeviceStatuesView\ComputerDeviceView.xaml.cs">
       <DependentUpon>ComputerDeviceView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\DeviceStatuesView\XinShangDeviceView.xaml.cs">
-      <DependentUpon>XinShangDeviceView.xaml</DependentUpon>
+    <Compile Include="Views\DeviceStatuesView\MITSUBISHIDeviceView.xaml.cs">
+      <DependentUpon>MITSUBISHIDeviceView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\VirtualDeviceDebugView.xaml.cs">
       <DependentUpon>VirtualDeviceDebugView.xaml</DependentUpon>
@@ -298,7 +299,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\DeviceStatuesView\XinShangDeviceView.xaml">
+    <Page Include="Views\DeviceStatuesView\MITSUBISHIDeviceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -339,8 +340,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SocketHeartEx\SocketHeartEx.csproj">
+      <Project>{1ae3e10a-e1aa-44f5-8be7-46c6cb4a5bf7}</Project>
+      <Name>SocketHeartEx</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VirtualDeviceTestingManage.Common\VirtualDeviceTestingManage.Common.csproj">
-      <Project>{4504F7E2-0F6D-4AA4-9F08-B2BCEEACBA0F}</Project>
+      <Project>{4504f7e2-0f6d-4aa4-9f08-b2bceeacba0f}</Project>
       <Name>VirtualDeviceTestingManage.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\VirtualDeviceTestingManage.Dal\VirtualDeviceTestingManage.Dal.csproj">
@@ -351,12 +356,7 @@
       <Project>{29d37f61-74d4-41e7-b744-2770a93d9fd1}</Project>
       <Name>VirtualDeviceTestingManage.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SocketHeartEx\SocketHeartEx.csproj">
-      <Project>{1AE3E10A-E1AA-44F5-8BE7-46C6CB4A5BF7}</Project>
-      <Name>SocketHeartEx</Name>
-    </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Data.SqlClient.SNI.1.1.0\build\net46\Microsoft.Data.SqlClient.SNI.targets" Condition="Exists('..\packages\Microsoft.Data.SqlClient.SNI.1.1.0\build\net46\Microsoft.Data.SqlClient.SNI.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
@@ -364,6 +364,7 @@
       <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.Data.SqlClient.SNI.1.1.0\build\net46\Microsoft.Data.SqlClient.SNI.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Data.SqlClient.SNI.1.1.0\build\net46\Microsoft.Data.SqlClient.SNI.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.EntityFrameworkCore.Design.3.1.7\build\net461\Microsoft.EntityFrameworkCore.Design.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.EntityFrameworkCore.Design.3.1.7\build\net461\Microsoft.EntityFrameworkCore.Design.props'))" />
   </Target>
   <PropertyGroup>
     <PostBuildEvent>

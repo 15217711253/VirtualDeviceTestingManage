@@ -49,28 +49,29 @@ namespace VirtualDeviceManage.App.ProtocolProviders
                         this.ShowId=int.Parse(cus_msg.msg.Substring(5, 2));
                         break;
                     case "STAT":
-                         socketServer.Send(cus_msg.remoteEndPoint, GetStatues());
+                         socketServer.SendBytes(cus_msg.remoteEndPoint, GetStatues());
                     break;
                     default: break; 
                 }
                 return;
         }
 
-        private string GetStatues()
+        private List<byte> GetStatues()
         {
-            string result = "#";
-            result += ConvertProvider.ConvertIntToByteAsc(this.ShowId);
+            List<byte> result = new List<byte>();
+            result.Add(byte.Parse("35"));
+            result.AddRange(ConvertProvider.ConvertIntToByte(this.ShowId));
             
-            result += ConvertProvider.ConvertBoolListToByteASC(InterStatues);
+            result.AddRange(ConvertProvider.ConvertBoolListToByte(InterStatues));
 
-            result += "FF";
+            result.Add(byte.Parse("255"));
 
-            result += ConvertProvider.ConvertBoolListToByteASC(this.DeviceWarm);
-
-
-            result += "01" + "#";
-
-
+            result.AddRange(ConvertProvider.ConvertBoolListToByte(this.DeviceWarm));
+            if (base.ModeWrong)
+                result.Add(byte.Parse("1"));
+            else
+                result.Add(byte.Parse("0"));
+            result.Add(byte.Parse("35"));
             return result;
         }
 

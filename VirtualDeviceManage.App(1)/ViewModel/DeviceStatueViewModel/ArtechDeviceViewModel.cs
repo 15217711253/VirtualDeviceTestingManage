@@ -17,7 +17,7 @@ namespace VirtualDeviceManage.App.ViewModel
             Warm = new List<bool>() { true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true };
         }
 
-        private string _DeviceId;
+        private string _DeviceId ;
 
         public string DeviceId
         {

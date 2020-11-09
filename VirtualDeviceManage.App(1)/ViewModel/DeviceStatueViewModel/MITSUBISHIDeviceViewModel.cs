@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace VirtualDeviceManage.App.ViewModel
 {
-    public class XinShangDeviceViewModel : ViewModelBase
+    public class MITSUBISHIDeviceViewModel : ViewModelBase
     {
-        public XinShangDeviceViewModel()
+        public MITSUBISHIDeviceViewModel()
         {
             
         }
@@ -26,9 +26,9 @@ namespace VirtualDeviceManage.App.ViewModel
             }
         }
 
-        private int showMode;
+        private object showMode;
                 
-        public int ShowMode
+        public object ShowMode
         {
             get { return showMode; }
             set

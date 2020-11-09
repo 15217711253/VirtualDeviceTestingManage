@@ -13,11 +13,11 @@ namespace VirtualDeviceManage.App
         /// </summary>
         /// <param name="bo"></param>
         /// <returns></returns>
-        public static string ConvertBoolListToByteASC(List<bool> bo)
+        public static byte[] ConvertBoolListToByte(List<bool> bo)
         {
             int len = bo.Count;
-            int value = 0;
-            string result = "";
+            int value = 0; 
+            
             if (len <= 16 && len > 8)
             {
                 byte[] bytes = new byte[2];
@@ -29,10 +29,10 @@ namespace VirtualDeviceManage.App
                     bytes[0] = ((byte)((value >> 8) & 0xFF));
                 if ((byte)((value) & 0xFF) != 0)
                     bytes[1] = ((byte)((value) & 0xFF));
+                return bytes;
 
-                result = BitConverter.ToString(bytes).Replace("-", "");
             }
-            else if (len <= 8)
+            else  
             {
                 byte[] bytes = new byte[1];
                 foreach (bool b in bo)
@@ -41,10 +41,10 @@ namespace VirtualDeviceManage.App
                 }
                 if ((byte)((value) & 0xFF) != 0)
                     bytes[0] = ((byte)((value) & 0xFF));
+                return bytes;
 
-                result = BitConverter.ToString(bytes).Replace("-", "");
             }
-            return result;
+            
         }
 
         /// <summary>
@@ -52,9 +52,8 @@ namespace VirtualDeviceManage.App
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static string ConvertIntToByteAsc(int value)
+        public static byte[] ConvertIntToByte(int value)
         {
-            string result = "";
             if (value > 255 && value < 65535)
             {
                 byte[] bytes = new byte[2];
@@ -62,16 +61,16 @@ namespace VirtualDeviceManage.App
                     bytes[0] = ((byte)((value >> 8) & 0xFF));
                 if ((byte)((value) & 0xFF) != 0)
                     bytes[1] = ((byte)((value) & 0xFF));
-                result = BitConverter.ToString(bytes).Replace("-", "");
+                return bytes;
             }
-            else if (value <= 255)
+            else
             {
                 byte[] bytes = new byte[1];
                 if ((byte)((value) & 0xFF) != 0)
                     bytes[0] = ((byte)((value) & 0xFF));
-                result = BitConverter.ToString(bytes).Replace("-", "");
+                return bytes;
             }
-            return result;
+            
         }
     }
 

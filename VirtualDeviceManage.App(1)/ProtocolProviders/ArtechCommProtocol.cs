@@ -8,10 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Interop;
-using System.Windows.Threading;
-using VirtualDeviceManage.App.CommProviders;
-using VirtualDeviceManage.App.DeviceVirtualStaute;
 using VirtualDeviceManage.App.Interface;
 using VirtualDeviceManage.App.ViewModel;
 
@@ -92,13 +88,13 @@ namespace VirtualDeviceManage.App.ProtocolProviders
                     //状态查询
                     case "STU":
                         var statue =  GetStatues();
-                        socketServer.Send(cus_msg.remoteEndPoint, "!" + statue + "#");
+                        socketServer.Send(cus_msg.remoteEndPoint,statue);
                         break;
 
                     //警报查询
                     case "ALM":
                         var Warm = GetWarm();
-                        socketServer.Send(cus_msg.remoteEndPoint, "!" + Warm + "#");
+                        socketServer.Send(cus_msg.remoteEndPoint,Warm);
                         break;
                     default:
                         break;
@@ -135,11 +131,13 @@ namespace VirtualDeviceManage.App.ProtocolProviders
             foreach (var item in base.Statue_Oiler)
             {
                 if (item)
-                    str += "R";
-                else
                     str += "S";
-            } 
-            str = str + ConvertProvider.ConvertBoolListToByteASC(base.Statue_Motor);
+                else
+                    str += "R";
+            }
+            //var a = ConvertProvider.ConvertBoolListToByte(base.Statue_Motor);
+            //var Statue = BitConverter.ToString(a).Replace("-", "");
+             //str = str + Statue;
             str = str + "#";
            
             return str;
@@ -154,7 +152,10 @@ namespace VirtualDeviceManage.App.ProtocolProviders
             string str;
             str = "!" + base.DeviceId +
                  base.DeviceId ;
-            str = str + ConvertProvider.ConvertBoolListToByteASC(base.Warm);  
+            var a = ConvertProvider.ConvertBoolListToByte(base.Warm);
+            var Statue = BitConverter.ToString(a).Replace("-", "");
+            str = str + Statue;
+  
             str = str + "#";
 
             return str;

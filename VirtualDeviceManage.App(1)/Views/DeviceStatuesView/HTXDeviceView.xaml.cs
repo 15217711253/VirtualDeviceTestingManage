@@ -63,22 +63,22 @@ namespace VirtualDeviceManage.App.Views
         private void NorMalButton_Click(object sender, RoutedEventArgs e)
         {
             this.PowerCheckBox.IsChecked = true;
-            this.warm1.IsChecked = true;
-            this.warm2.IsChecked = true;
-            this.warm3.IsChecked = true;
-            this.warm4.IsChecked = true;
-            this.warm5.IsChecked = true;
-            this.warm6.IsChecked = true;
-            this.warm7.IsChecked = true;
-            this.warm8.IsChecked = true;
-            this.warm9.IsChecked = true;
-            this.warm10.IsChecked =true;
-            this.warm11.IsChecked =true;
-            this.warm12.IsChecked =true;
-            this.warm13.IsChecked =true;
-            this.warm14.IsChecked = true;
-            this.warm15.IsChecked = true;
-            this.warm16.IsChecked = true;
+            this.warm1.IsChecked = false;
+            this.warm2.IsChecked = false;
+            this.warm3.IsChecked = false;
+            this.warm4.IsChecked = false;
+            this.warm5.IsChecked = false;
+            this.warm6.IsChecked = false;
+            this.warm7.IsChecked = false;
+            this.warm8.IsChecked = false;
+            this.warm9.IsChecked = false;
+            this.warm10.IsChecked =false;
+            this.warm11.IsChecked =false;
+            this.warm12.IsChecked =false;
+            this.warm13.IsChecked =false;
+            this.warm14.IsChecked = false;
+            this.warm15.IsChecked = false;
+            this.warm16.IsChecked = false;
             this.ModeWrong.IsChecked = false;
         }                        
     }                            
